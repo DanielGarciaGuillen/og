@@ -2,6 +2,8 @@ import React, { Component } from "react";
 
 import "./App.css";
 
+var gifs = [];
+
 /* const API = "http://api.giphy.com/v1/gifs/search?q=";
 const DEFAULT_QUERY = "redux";
 const KEY = "&api_key=dc6zaTOxFJmzC"; */
@@ -15,8 +17,10 @@ class App extends Component {
   componentWillMount() {
     fetch("http://api.giphy.com/v1/gifs/search?q=redux&api_key=dc6zaTOxFJmzC")
       .then((response) => response.json())
-      .then(function (data) {
-        console.log(data);
+      .then((data) => {
+
+        gifs = data.data;
+        console.log(gifs)
       })
       .catch(error => {
         console.error(error);
