@@ -27,7 +27,7 @@ body {
   }
   .main {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
     grid-gap: 1rem;
   }
 }
@@ -39,9 +39,10 @@ body {
 .gif {
   display: flex;
   flex-flow: column;
-  border: 1px solid black;
+
   border-radius: 3rem;
   padding: 2rem;
+  justify-content: center;
 }
 .gif > h1 {
   margin: 1rem 1rem 0;
@@ -50,7 +51,11 @@ body {
 .gif > p {
   margin: 0.25em 1rem 1rem;
 }
-gif > img {
+.gif > img {
   order: -1;
   align-self: center;
+  max-height: 250px;
+  max-width: 250px;
+  border-radius: 3px;
+
 }
