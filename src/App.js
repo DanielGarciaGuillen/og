@@ -19,9 +19,6 @@ class App extends Component {
     this.getGifs = this.getGifs.bind(this)
   }
 
-  //Handle new Query
-
-
 
   getGifs() {
     this.setState({ offset: this.state.offset + 50 })
@@ -29,7 +26,7 @@ class App extends Component {
       .then((response) => response.json())
       .then((data) => {
         list.push(...data.data);
-        console.log(list);
+
         this.setState({ list })
       })
 
@@ -40,9 +37,20 @@ class App extends Component {
   handleUpdateQuery = query => {
     this.setState({
       query: query,
-      list: []
+      list: [],
+      offset: 0,
     });
-
+    //Improve design here
+    fetch(API + `${this.state.query}` + Key + `${this.state.offset}`)
+      .then((response) => response.json())
+      .then((data) => {
+        list = data.data;
+        this.setState({ list })
+        console.log(this.state)
+      })
+      .catch(error => {
+        console.error(error);
+      });
   };
 
 
@@ -51,10 +59,9 @@ class App extends Component {
     fetch(API + `${this.state.query}` + Key + `${this.state.offset}`)
       .then((response) => response.json())
       .then((data) => {
-
         list = data.data;
-        console.log(list);
         this.setState({ list })
+        console.log(this.state)
       })
       .catch(error => {
         console.error(error);
@@ -62,25 +69,32 @@ class App extends Component {
 
   }
 
-  componentWillReceiveProps(nextProps) {
+  /* componentWillReceiveProps(nextProps) {
     if ((this.props.query) !== (nextProps.query)) {
       console.log("new props!")
       this.getGifs();
     }
   }
-
+ */
   render() {
 
-    const listItems = list.map((gif) => <li className="gif" key={gif.id}>
-      <img className="gifImage" alt={gif.title} src={gif.images.downsized.url} />
-    </li >);
+    const listItems = list.map((gif) =>
+      <li className="gif" key={gif.id}>
+        <a className="linkGif" href={gif.url} target="_blank">
+          <img className="gifImage" alt={gif.title} src={gif.images.downsized.url} />
+        </a>
+      </li >);
 
     return (
+
+
       <div className="container">
+        <div className="header" id="animationBackground">
+        </div>
 
         <ChangeTheme onClick={this.handleUpdateQuery} />
 
-        <h1 className="Title">Design<br /> Inspiration</h1>
+        <h1 className="Title">Design.!.<br /> </h1>
         <div className="main gallery">
           {listItems}
           <Waypoint

@@ -1,5 +1,5 @@
-import React, { Component } from "react";
-
+import React from "react";
+import "../App.css";
 
 
 export class ChangeTheme extends React.Component {
@@ -12,15 +12,13 @@ export class ChangeTheme extends React.Component {
     }
 
     handleClick({ currentTarget }) {
-        var query = currentTarget.value
-        console.log(query)
+        const query = currentTarget.value;
         this.setState({ text: query })
         const { onClick } = this.props;
 
+
         console.log(this.props);
         console.log(this.state);
-
-
         //On Submit is coming from the app component binded to handleUpdateLocation
         onClick(query);
 
@@ -30,9 +28,23 @@ export class ChangeTheme extends React.Component {
 
     render() {
         return (
-            <button className="button" value="design" onClick={this.handleClick}>
-                Design
+            <div className="buttons">
+                <button className="button" value="design" onClick={this.handleClick}>
+                    Design
       </button>
+                <button className="button" value="motion" onClick={this.handleClick}>
+                    Motion
+</button>
+                <button className="button" value="architecture" onClick={this.handleClick}>
+                    Architecture
+      </button>
+                <button className="button" value="3d" onClick={this.handleClick}>
+                    3d
+</button>
+                <button className="button" value="pixelart" onClick={this.handleClick}>
+                    Pixel Art
+</button>
+            </div>
         );
     }
 }
