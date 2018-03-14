@@ -21,7 +21,7 @@ class App extends Component {
 
   //API call with Props
   componentDidMount() {
-    function dataFetech() {
+    function dataFetch() {
       fetch(API + `${this.state.query}` + Key + `${this.state.offset}`)
         .then(response => response.json())
         .then(data => {

@@ -8,17 +8,24 @@ export class ChangeTheme extends React.Component {
     this.state = {
       text: ""
     };
-    /*  this.handleClick = this.handleClick.bind(this); */
-    this.changeQuery = this.changeQuery.bind(this);
-    this.validateTitle = this.validateTitle.bind(this);
+    this.handleQuery = this.handleQuery.bind(this);
+    /*    this.changeQuery = this.changeQuery.bind(this);
+    this.validateTitle = this.validateTitle.bind(this); */
   }
 
-  changeQuery({ currentTarget }) {
-    query = currentTarget.value;
+  //Try doing callback on Change Query and with the two functions
+
+  changeQuery() {
     this.setState({ text: query }, function() {
       this.validateTitle();
     });
   }
+
+  handleQuery({ currentTarget }) {
+    query = currentTarget.value;
+    this.changeQuery();
+  }
+
   validateTitle() {
     const { onClick } = this.props;
     onClick(query);
@@ -41,39 +48,39 @@ export class ChangeTheme extends React.Component {
     const { query } = this.state;
     return (
       <div className="buttons">
-        <button className="button" value="design" onClick={this.changeQuery}>
+        <button className="button" value="design" onClick={this.handleQuery}>
           Design
         </button>
-        <button className="button" value="motion" onClick={this.changeQuery}>
+        <button className="button" value="motion" onClick={this.handleQuery}>
           Motion
         </button>
         <button
           className="button"
           value="architecture"
-          onClick={this.changeQuery}
+          onClick={this.handleQuery}
         >
           Architecture
         </button>
-        <button className="button" value="3d" onClick={this.changeQuery}>
+        <button className="button" value="3d" onClick={this.handleQuery}>
           3d
         </button>
         <button
           className="button"
           value="digital%20art"
-          onClick={this.changeQuery}
+          onClick={this.handleQuery}
         >
           Digital Art
         </button>
-        <button className="button" value="pixelart" onClick={this.changeQuery}>
+        <button className="button" value="pixelart" onClick={this.handleQuery}>
           Pixel Art
         </button>
-        <button className="button" value="animation" onClick={this.changeQuery}>
+        <button className="button" value="animation" onClick={this.handleQuery}>
           Animation
         </button>
-        <button className="button" value="render" onClick={this.changeQuery}>
+        <button className="button" value="render" onClick={this.handleQuery}>
           Render
         </button>
-        <button className="button" value="art" onClick={this.changeQuery}>
+        <button className="button" value="art" onClick={this.handleQuery}>
           Art
         </button>
       </div>
