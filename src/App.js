@@ -1,11 +1,11 @@
 import React, { Component } from "react";
-import Waypoint from 'react-waypoint';
+import Waypoint from "react-waypoint";
 import "./App.css";
 import ChangeTheme from "./components/button";
 
 var list = [];
 const API = "http://api.giphy.com/v1/gifs/search?q=";
-const Key = "&api_key=dc6zaTOxFJmzC&limit=50&offset=";
+const Key = "&api_key=dc6zaTOxFJmzC&limit=30&offset=";
 
 class App extends Component {
   constructor(props) {
@@ -14,20 +14,18 @@ class App extends Component {
     this.state = {
       list: [],
       offset: 0,
-      query: "motion"
+      query: "design"
     };
-    this.getGifs = this.getGifs.bind(this)
+    this.getGifs = this.getGifs.bind(this);
   }
 
-
   getGifs() {
-    this.setState({ offset: this.state.offset + 50 })
+    this.setState({ offset: this.state.offset + 30 });
     fetch(API + `${this.state.query}` + Key + `${this.state.offset}`)
-      .then((response) => response.json())
-      .then((data) => {
+      .then(response => response.json())
+      .then(data => {
         list.push(...data.data);
-
-        this.setState({ list })
+        this.setState({ list });
       })
 
       .catch(error => {
@@ -38,35 +36,32 @@ class App extends Component {
     this.setState({
       query: query,
       list: [],
-      offset: 0,
+      offset: 0
     });
     //Improve design here
     fetch(API + `${this.state.query}` + Key + `${this.state.offset}`)
-      .then((response) => response.json())
-      .then((data) => {
+      .then(response => response.json())
+      .then(data => {
         list = data.data;
-        this.setState({ list })
-        console.log(this.state)
+        this.setState({ list });
+        console.log(this.state);
       })
       .catch(error => {
         console.error(error);
       });
   };
 
-
   componentWillMount() {
-
     fetch(API + `${this.state.query}` + Key + `${this.state.offset}`)
-      .then((response) => response.json())
-      .then((data) => {
+      .then(response => response.json())
+      .then(data => {
         list = data.data;
-        this.setState({ list })
-        console.log(this.state)
+        this.setState({ list });
+        console.log(this.state);
       })
       .catch(error => {
         console.error(error);
       });
-
   }
 
   /* componentWillReceiveProps(nextProps) {
@@ -77,35 +72,34 @@ class App extends Component {
   }
  */
   render() {
-
-    const listItems = list.map((gif) =>
+    const listItems = list.map(gif => (
       <li className="gif" key={gif.id}>
         <a className="linkGif" href={gif.url} target="_blank">
-          <img className="gifImage" alt={gif.title} src={gif.images.downsized.url} />
+          <img
+            className="gifImage"
+            alt={gif.title}
+            src={gif.images.downsized.url}
+          />
         </a>
-      </li >);
+      </li>
+    ));
 
     return (
-
-
       <div className="container">
-        <div className="header" id="animationBackground">
-        </div>
+        <div className="header" id="animationBackground" />
 
         <ChangeTheme onClick={this.handleUpdateQuery} />
 
-        <h1 className="Title">Design.!.<br /> </h1>
+        <h1 className="Title">
+          DEsign.!.<br />{" "}
+        </h1>
         <div className="main gallery">
           {listItems}
-          <Waypoint
-            onEnter={this.getGifs} />
+          <Waypoint onEnter={this.getGifs} />
         </div>
-
       </div>
     );
   }
 }
 
 export default App;
-
-
