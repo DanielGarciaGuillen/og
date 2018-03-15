@@ -17,6 +17,7 @@ export class ChangeTheme extends React.Component {
   handleQuery = ({ currentTarget }) => {
     currentTarget.preventDefault;
     query = currentTarget.value;
+
     this.setState({ text: query }, function() {
       this.validateTitle();
     });

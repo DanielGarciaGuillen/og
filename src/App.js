@@ -114,8 +114,8 @@ class App extends Component {
           <div>
             {/* Loading Animation*/}
             <BeatLoader
-              color={"#feac5e"}
-              size={50}
+              size={150}
+              color={"#F7C59F"}
               loading={this.state.loading}
             />
           </div>

@@ -92,14 +92,12 @@ article {
   justify-self: center;
   transition: 1s;
 }
-
 .gif :hover {
   transform: translate(0, -5px);
   -ms-transform: scale(1.08, 1.08); /* IE 9 */
   -webkit-transform: scale(1.08, 1.08); /* Safari */
   transform: scale(1.08, 1.08);
 }
-
 .gif > h1 {
   margin: 1rem 1rem 0;
 }
@@ -107,13 +105,14 @@ article {
 .gif > p {
   margin: 0.25em 1rem 1rem;
 }
-.gif > img {
-}
+
 .linkGif > img {
   order: -1;
   align-self: center;
   max-height: 250px;
   max-width: 250px;
+  min-width: 200px;
+  min-height: 200px;
   border-radius: 3px;
 }
 .title {
@@ -145,6 +144,12 @@ article {
   font-family: "Roboto Slab", serif;
 }
 
+button:focus {
+  outline: none !important;
+  border-color: none;
+  box-shadow: 0 0 10px #feac5e;
+}
+
 .createdBy {
   height: 50px;
   width: 60%;
@@ -155,9 +160,9 @@ article {
 }
 .myGif {
   height: 115px;
-
   border-radius: 100px;
 }
+
 @media only screen and (max-width: 850px) {
   /* For mobile phones: */
   .container {
@@ -181,7 +186,6 @@ article {
   .button {
     height: 50px;
     width: 100%;
-
     font-size: 10px;
   }
   .buttons {
