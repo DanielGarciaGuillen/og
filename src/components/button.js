@@ -9,21 +9,24 @@ export class ChangeTheme extends React.Component {
       text: ""
     };
     this.handleQuery = this.handleQuery.bind(this);
-    /*    this.changeQuery = this.changeQuery.bind(this);
-    this.validateTitle = this.validateTitle.bind(this); */
+    /* this.changeQuery = this.changeQuery.bind(this); */
+    this.validateTitle = this.validateTitle.bind(this);
   }
 
   //Try doing callback on Change Query and with the two functions
 
-  changeQuery() {
+  /*  changeQuery() {
     this.setState({ text: query }, function() {
       this.validateTitle();
     });
-  }
+  } */
 
   handleQuery({ currentTarget }) {
+    currentTarget.preventDefault;
     query = currentTarget.value;
-    this.changeQuery();
+    this.setState({ text: query }, function() {
+      this.validateTitle();
+    });
   }
 
   validateTitle() {
