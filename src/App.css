@@ -25,7 +25,7 @@ article {
   .header {
     grid-column: 2/4;
     text-align: center;
-    height: 120%;
+    height: 80%;
     background: #0a0f0d;
     border-radius: 3px;
     padding-top: 8px;
@@ -95,9 +95,9 @@ article {
 
 .gif :hover {
   transform: translate(0, -5px);
-  -ms-transform: scale(1.1, 1.1); /* IE 9 */
-  -webkit-transform: scale(1.1, 1.1); /* Safari */
-  transform: scale(1.1, 1.1);
+  -ms-transform: scale(1.08, 1.08); /* IE 9 */
+  -webkit-transform: scale(1.08, 1.08); /* Safari */
+  transform: scale(1.08, 1.08);
 }
 
 .gif > h1 {
@@ -118,7 +118,7 @@ article {
 }
 .Title {
   grid-area: searchM;
-
+  align-self: center;
   text-align: center;
   justify-self: start;
   font-size: 50px;

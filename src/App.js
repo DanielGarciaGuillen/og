@@ -4,8 +4,8 @@ import "./App.css";
 import ChangeTheme from "./components/button";
 
 var list = [];
-const API = "http://api.giphy.com/v1/gifs/search?q=";
-const Key = "&api_key=dc6zaTOxFJmzC&limit=30&offset=";
+const API = "http://api.giphy.com/v1/stickers/search?q=";
+const Key = "&api_key=dc6zaTOxFJmzC&limit=40&offset=";
 
 class App extends Component {
   constructor(props) {
@@ -40,7 +40,7 @@ class App extends Component {
   //an API call the offset is set to the amount of the calls already done so
   //the infite scroll doesn't repeat Gifs.
   getGifs() {
-    this.setState({ offset: this.state.offset + 30 });
+    this.setState({ offset: this.state.offset + 40 });
     fetch(API + `${this.state.query}` + Key + `${this.state.offset}`)
       .then(response => response.json())
       .then(data => {
@@ -70,7 +70,7 @@ class App extends Component {
       .then(data => {
         list = data.data;
 
-        console.log(list);
+        console.log(this.state);
       })
       .catch(error => {
         console.error(error);
@@ -99,7 +99,7 @@ class App extends Component {
         {/* //Header */}
         <div className="header" id="animationBackground" />
 
-        <ChangeTheme onClick={this.handleUpdateQuery} />
+        <ChangeTheme onClick={this.handleUpdateQuery.bind(this)} />
 
         <h1 className="Title">
           DEsign.!.<br />{" "}
