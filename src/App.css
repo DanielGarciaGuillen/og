@@ -145,6 +145,19 @@ article {
   font-family: "Roboto Slab", serif;
 }
 
+.createdBy {
+  height: 50px;
+  width: 60%;
+  margin: 330px;
+}
+.me {
+  margin-top: 110px;
+}
+.myGif {
+  height: 115px;
+
+  border-radius: 100px;
+}
 @media only screen and (max-width: 768px) {
   /* For mobile phones: */
   .container {

@@ -98,7 +98,7 @@ class App extends Component {
       <div className="container">
         {/* //Header */}
         <div className="header" id="animationBackground" />
-
+        {/* Buttons */}
         <ChangeTheme onClick={this.handleUpdateQuery.bind(this)} />
 
         <h1 className="Title">

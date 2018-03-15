@@ -86,6 +86,13 @@ export class ChangeTheme extends React.Component {
         <button className="button" value="art" onClick={this.handleQuery}>
           Art
         </button>
+        <div className="me">
+          by <br />
+          <a href="https://www.linkedin.com/in/danielgguillen/?locale=en_US">
+            {" "}
+            <img className="myGif" src={require("../images/mygif.gif")} />
+          </a>
+        </div>
       </div>
     );
   }
