@@ -111,8 +111,8 @@ article {
   align-self: center;
   max-height: 250px;
   max-width: 250px;
-  min-width: 200px;
-  min-height: 200px;
+  /* min-width: 200px;
+  min-height: 200px; */
   border-radius: 3px;
 }
 .title {

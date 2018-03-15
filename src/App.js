@@ -5,7 +5,7 @@ import { BeatLoader } from "react-spinners";
 import "./App.css";
 import ChangeTheme from "./components/button";
 
-const API = "http://api.giphy.com/v1/gifs/search?q=";
+const API = "http://api.giphy.com/v1/stickers/search?q=";
 const Key = "&api_key=dc6zaTOxFJmzC&limit=40&offset=";
 
 var list = [];
@@ -54,11 +54,12 @@ class App extends Component {
       .catch(error => {
         console.error(error);
       });
+    console.log(this.state);
   }
 
   //Callback from Child ChangeTheme Component
   handleUpdateQuery = query => {
-    list = [];
+    list.length = 0;
     //Set query to prop.query passed by the Child Component, reset List arry and offset.
     this.setState({
       query: query,
@@ -68,16 +69,18 @@ class App extends Component {
     });
     console.log(this.state);
     //API Call with new props
+
     fetch(API + `${this.state.query}` + Key + `${this.state.offset}`)
       .then(response => response.json())
       .then(data => {
         list = data.data;
         console.log(this.state);
       })
+      .then(this.setState({ list }))
       .catch(error => {
         console.error(error);
       });
-    this.setState({ list: list, loading: false });
+    this.setState({ loading: false });
   };
 
   render() {
