@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import Waypoint from "react-waypoint";
 import "./App.css";
 import ChangeTheme from "./components/button";
+import { BeatLoader } from "react-spinners";
 
 var list = [];
 const API = "http://api.giphy.com/v1/gifs/search?q=";
@@ -13,7 +14,8 @@ class App extends Component {
     this.state = {
       list: [],
       offset: 0,
-      query: "design"
+      query: "design",
+      loading: false
     };
     this.getGifs = this.getGifs.bind(this);
     /* this.handleUpdateQuery = this.handleUpdateQuery.bind(this); */
@@ -40,13 +42,14 @@ class App extends Component {
   //an API call the offset is set to the amount of the calls already done so
   //the infite scroll doesn't repeat Gifs.
   getGifs() {
-    this.setState({ offset: this.state.offset + 40 });
+    this.setState({ offset: this.state.offset + 40, loading: true });
     fetch(API + `${this.state.query}` + Key + `${this.state.offset}`)
       .then(response => response.json())
       .then(data => {
         //Spread operator to push data into the List array
         list.push(...data.data);
         this.setState({ list });
+        this.setState({ loading: false });
       })
 
       .catch(error => {
@@ -61,7 +64,8 @@ class App extends Component {
     this.setState({
       query: query,
       list: list,
-      offset: 0
+      offset: 0,
+      loading: true
     });
     console.log(this.state);
     //Call API with new props
@@ -76,7 +80,7 @@ class App extends Component {
         console.error(error);
       });
 
-    this.setState({ list: list });
+    this.setState({ list: list, loading: false });
   };
 
   render() {
@@ -107,6 +111,13 @@ class App extends Component {
         <div className="main gallery">
           {listItems}
           <Waypoint onEnter={this.getGifs} />
+          <div>
+            <BeatLoader
+              color={"#feac5e"}
+              size={50}
+              loading={this.state.loading}
+            />
+          </div>
         </div>
       </div>
     );
