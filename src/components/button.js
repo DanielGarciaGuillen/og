@@ -1,5 +1,6 @@
 import React from "react";
 import "../App.css";
+
 var query = "";
 
 export class ChangeTheme extends React.Component {
@@ -9,18 +10,10 @@ export class ChangeTheme extends React.Component {
       text: ""
     };
     this.handleQuery = this.handleQuery.bind(this);
-    /* this.changeQuery = this.changeQuery.bind(this); */
     this.validateTitle = this.validateTitle.bind(this);
   }
 
-  //Try doing callback on Change Query and with the two functions
-
-  /*  changeQuery() {
-    this.setState({ text: query }, function() {
-      this.validateTitle();
-    });
-  } */
-
+  //Getting value from pressed button and setState to the value
   handleQuery = ({ currentTarget }) => {
     currentTarget.preventDefault;
     query = currentTarget.value;
@@ -29,23 +22,13 @@ export class ChangeTheme extends React.Component {
     });
   };
 
+  //Passsing props to callback on parent component
   validateTitle() {
     const { onClick } = this.props;
     onClick(query);
     console.log(this.props);
     console.log(this.state);
   }
-
-  /*  handleClick({ currentTarget }) {
-    const query = currentTarget.value;
-    this.setState({ text: query });
-
-    console.log(this.props);
-    console.log(this.state);
-    //On Submit is coming from the app component binded to handleUpdateLocation
-    const { onClick } = this.props;
-    onClick(query);
-  } */
 
   render() {
     const { query } = this.state;
@@ -90,7 +73,11 @@ export class ChangeTheme extends React.Component {
           by <br />
           <a href="https://www.linkedin.com/in/danielgguillen/?locale=en_US">
             {" "}
-            <img className="myGif" src={require("../images/mygif.gif")} />
+            <img
+              className="myGif"
+              src={require("../images/mygif.gif")}
+              alt="pictureofmyself"
+            />
           </a>
         </div>
       </div>
