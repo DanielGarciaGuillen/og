@@ -4,7 +4,7 @@ import "./App.css";
 import ChangeTheme from "./components/button";
 
 var list = [];
-const API = "http://api.giphy.com/v1/stickers/search?q=";
+const API = "http://api.giphy.com/v1/gifs/search?q=";
 const Key = "&api_key=dc6zaTOxFJmzC&limit=40&offset=";
 
 class App extends Component {

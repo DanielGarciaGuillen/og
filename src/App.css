@@ -145,18 +145,23 @@ article {
   font-family: "Roboto Slab", serif;
 }
 
-/* .button{
-background-image: -webkit-gradient(linear,right top,left top,from(#24aef2),to(#f224f2));
-    background-image: linear-gradient(to left,#24aef2,#f224f2);
-    background-size: 150% 150%;
-    -webkit-animation: bannerBackground 5s ease infinite;
-    animation: bannerBackground 5s ease infinite;
-    position: fixed;
-    z-index: 100;
+@media only screen and (max-width: 768px) {
+  /* For mobile phones: */
+  .container {
+    grid-template-columns: 1fr 250px;
+  }
+  body {
+    font-size: 50%;
+  }
+  .button {
+    height: 50px;
     width: 100%;
-    padding: 10px 40px 10px 20px;
-    font-size: 14px;
-    color: #fff;
-    min-height: var(--hello-bar-height);
-    border-bottom: 1px solid rgba(255,255,255,.7);
-} */
+
+    font-size: 10px;
+  }
+  .buttons {
+    width: 100%;
+
+    margin-left: 10px;
+  }
+}
