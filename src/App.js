@@ -7,8 +7,8 @@ import ChangeTheme from "./components/button";
 import Sticky from "./components/totop";
 
 const API = "http://api.giphy.com/v1/gifs/search?q=";
-const Key = "&api_key=dc6zaTOxFJmzC&limit=80&offset=";
-const ChangeKey = "&api_key=dc6zaTOxFJmzC&limit=80";
+const Key = "&api_key=dc6zaTOxFJmzC&limit=20&offset=";
+const ChangeKey = "&api_key=dc6zaTOxFJmzC&limit=20";
 
 var list = [];
 
@@ -35,7 +35,7 @@ class App extends Component {
   }
 
   async getGifs() {
-    await this.setStateAsync({ offset: this.state.offset + 80, loading: true });
+    await this.setStateAsync({ offset: this.state.offset + 20, loading: true });
     const res = await fetch(
       API + `${this.state.query}` + Key + `${this.state.offset}`
     );
@@ -75,7 +75,7 @@ class App extends Component {
           <img
             className="gifImage"
             alt={gif.title}
-            src={gif.images.preview_gif.url}
+            src={gif.images.downsized.url}
           />
         </a>
       </li>
