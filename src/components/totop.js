@@ -22,22 +22,6 @@ const Contribute = styled.div`
   }
 `;
 
-const ContributeButton = styled.a`
-  background: #ff5c5c;
-  border-radius: 3px;
-  padding: 8px;
-  text-transform: uppercase;
-  color: white;
-  cursor: pointer;
-  font-size: 14px;
-  font-weight: 600;
-  border: 0px;
-  :hover {
-    background: linear-gradient(to right, #00d2ff, #928dab);
-    border: 1px solid white;
-  }
-`;
-
 class Sticky extends Component {
   constructor(props) {
     super(props);
@@ -60,12 +44,10 @@ class Sticky extends Component {
   }
   handleScroll() {
     if (window.scrollY > 2000) {
-      console.log("should lock");
       this.setState({
         scrollingLock: true
       });
     } else if (window.scrollY < 1400 || window.scrollY > 1999) {
-      console.log("not locked");
       this.setState({
         scrollingLock: false
       });
@@ -81,6 +63,7 @@ class Sticky extends Component {
             position: this.state.scrollingLock ? "fixed" : "relative",
             marginTop: this.state.scrollingLock ? "50px" : "5000px",
             marginRight: this.state.scrollingLock ? "-120px" : "-120px",
+            paddingTop: this.state.scrollingLock ? "250px" : "250px",
             width: "10%",
             cursor: "pointer"
           }}

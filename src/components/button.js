@@ -12,16 +12,19 @@ export class ChangeTheme extends React.Component {
     this.handleQuery = this.handleQuery.bind(this);
     this.validateTitle = this.validateTitle.bind(this);
   }
+  setStateAsync(state) {
+    return new Promise(resolve => {
+      this.setState(state, resolve);
+    });
+  }
 
-  //Getting value from pressed button and setState to the value
-  handleQuery = ({ currentTarget }) => {
+  async handleQuery({ currentTarget }) {
     currentTarget.preventDefault;
     query = currentTarget.value;
-
-    this.setState({ text: query }, function() {
-      this.validateTitle();
-    });
-  };
+    await this.setStateAsync({ text: query });
+    console.log(this.state);
+    await this.validateTitle();
+  }
 
   //Passsing props to callback on parent component
   validateTitle() {

@@ -1,17 +1,14 @@
 import React, { Component } from "react";
 import Waypoint from "react-waypoint";
-
 import { BeatLoader } from "react-spinners";
-import Toggle from "react-toggle";
 
 import "./App.css";
 import ChangeTheme from "./components/button";
 import Sticky from "./components/totop";
 
 const API = "http://api.giphy.com/v1/gifs/search?q=";
-const Key = "&api_key=dc6zaTOxFJmzC&limit=20&offset=";
-
-const ChangeKey = "&api_key=dc6zaTOxFJmzC&limit=20";
+const Key = "&api_key=dc6zaTOxFJmzC&limit=80&offset=";
+const ChangeKey = "&api_key=dc6zaTOxFJmzC&limit=80";
 
 var list = [];
 
@@ -38,7 +35,7 @@ class App extends Component {
   }
 
   async getGifs() {
-    await this.setStateAsync({ offset: this.state.offset + 40, loading: true });
+    await this.setStateAsync({ offset: this.state.offset + 80, loading: true });
     const res = await fetch(
       API + `${this.state.query}` + Key + `${this.state.offset}`
     );
@@ -78,7 +75,7 @@ class App extends Component {
           <img
             className="gifImage"
             alt={gif.title}
-            src={gif.images.downsized.url}
+            src={gif.images.preview_gif.url}
           />
         </a>
       </li>
@@ -109,7 +106,7 @@ class App extends Component {
         {/* Loading Animation*/}
         <div className="spinner">
           <BeatLoader
-            size={150}
+            size={20}
             color={"#F7C59F"}
             loading={this.state.loading}
           />
