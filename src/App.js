@@ -9,7 +9,9 @@ import ChangeTheme from "./components/button";
 import Sticky from "./components/totop";
 
 const API = "http://api.giphy.com/v1/gifs/search?q=";
-const Key = "&api_key=dc6zaTOxFJmzC&limit=40&offset=";
+const Key = "&api_key=dc6zaTOxFJmzC&limit=20&offset=";
+
+const ChangeKey = "&api_key=dc6zaTOxFJmzC&limit=20";
 
 var list = [];
 
@@ -34,6 +36,7 @@ class App extends Component {
   toTop() {
     window.scrollTo(0, 0);
   }
+
   async getGifs() {
     await this.setStateAsync({ offset: this.state.offset + 40, loading: true });
     const res = await fetch(
@@ -58,7 +61,7 @@ class App extends Component {
       loading: true
     });
 
-    const res = await fetch(API + `${this.state.query}` + Key);
+    const res = await fetch(API + `${this.state.query}` + ChangeKey);
     console.log(this.state);
     const { data } = await res.json();
     list.push(...data);
@@ -110,10 +113,6 @@ class App extends Component {
             color={"#F7C59F"}
             loading={this.state.loading}
           />
-
-          <button className="totop" onClick={this.toTop.bind(this)}>
-            To top{" "}
-          </button>
         </div>
       </div>
     );

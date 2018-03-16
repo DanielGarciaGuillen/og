@@ -48,9 +48,11 @@ export class ChangeTheme extends React.Component {
         >
           Architecture
         </button>
-        <button className="button" value="3d" onClick={this.handleQuery}>
-          3d
+
+        <button className="button" value="art" onClick={this.handleQuery}>
+          Art
         </button>
+
         <button
           className="button"
           value="digital%20art"
@@ -61,14 +63,38 @@ export class ChangeTheme extends React.Component {
         <button className="button" value="pixelart" onClick={this.handleQuery}>
           Pixel Art
         </button>
+        <button className="button" value="8bit" onClick={this.handleQuery}>
+          8bit
+        </button>
+        <button className="button" value="3d" onClick={this.handleQuery}>
+          3d
+        </button>
         <button className="button" value="animation" onClick={this.handleQuery}>
           Animation
         </button>
         <button className="button" value="render" onClick={this.handleQuery}>
           Render
         </button>
-        <button className="button" value="art" onClick={this.handleQuery}>
-          Art
+
+        <button className="button" value="space" onClick={this.handleQuery}>
+          space
+        </button>
+
+        <button
+          className="button"
+          value="videogames"
+          onClick={this.handleQuery}
+        >
+          Games
+        </button>
+        <button className="button" value="anime" onClick={this.handleQuery}>
+          Anime
+        </button>
+        <button className="button" value="scifi" onClick={this.handleQuery}>
+          sci fi
+        </button>
+        <button className="button" value="vintage" onClick={this.handleQuery}>
+          vintage
         </button>
         <div className="me">
           by <br />

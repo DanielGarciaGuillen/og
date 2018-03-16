@@ -1,6 +1,8 @@
 import React, { Component } from "react";
 import styled from "styled-components";
 
+import "../App.css";
+
 const Contribute = styled.div`
   grid-area: containerR;
   font-size: 18px;
@@ -84,7 +86,7 @@ class Sticky extends Component {
           }}
         >
           <a onClick={this.toTop.bind(this)}>
-            <img src={require("../images/cat.gif")} />
+            <img className="toTop" src={require("../images/cat.gif")} />
           </a>{" "}
         </div>
       </Contribute>
