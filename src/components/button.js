@@ -96,9 +96,13 @@ export class ChangeTheme extends React.Component {
         <button className="button" value="scifi" onClick={this.handleQuery}>
           sci fi
         </button>
+        <button className="button" value="trippy" onClick={this.handleQuery}>
+          trippy
+        </button>
         <button className="button" value="vintage" onClick={this.handleQuery}>
           vintage
         </button>
+
         <div className="me">
           by <br />
           <a href="https://www.linkedin.com/in/danielgguillen/?locale=en_US">

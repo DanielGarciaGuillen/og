@@ -171,16 +171,16 @@ button:focus {
 @media only screen and (max-width: 850px) {
   /* For mobile phones: */
   .container {
-    grid-template-columns: 50px 1fr 250px;
-
-    grid-template-rows: 60px 90px auto 100px;
+    grid-template-columns: 1fr;
+    grid-template-rows: 60px 90px 580px auto 100px;
     grid-column-gap: 5px;
     grid-row-gap: 5px;
     grid-template-areas:
-      "headerL headerM headerR "
-      "searchL searchM searchR "
-      "containerL containerM containerR"
-      "footerL footerM footerR ";
+      "headerM"
+      "searchM"
+      "buttonM"
+      "containerM"
+      "footerM";
     background-color: #fff;
     font-family: "Catamaran", sans-serif;
     max-width: 100vw;
@@ -188,17 +188,40 @@ button:focus {
   body {
     font-size: 50%;
   }
-  .button {
-    height: 50px;
-    width: 100%;
-    font-size: 10px;
-  }
-  .buttons {
-    width: 100%;
 
-    margin-left: 10px;
+  .buttons {
+    grid-area: buttonM;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    flex-wrap: wrap;
+    padding-top: 0;
   }
-}
-.toTop {
-  width: 40%;
+  .button {
+    font-size: 11px;
+    height: 50px;
+    box-sizing: border-box;
+    width: 50%;
+  }
+
+  .spinner {
+    grid-area: containerM;
+  }
+  .me {
+    display: none;
+  }
+  .header {
+    grid-column: 1;
+    text-align: center;
+    height: 80%;
+    background: #0a0f0d;
+    border-radius: 3px;
+    padding-top: 8px;
+    color: #fdffff;
+    font-size: 18px;
+    font-weight: bold;
+    align-self: start;
+    justify-self: end;
+    width: 70%;
+  }
 }

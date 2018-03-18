@@ -18,8 +18,13 @@ const Contribute = styled.div`
     opacity: 1;
   }
   @media (max-width: 500px) {
-    display: none;
+    grid-area: buttonM;
   }
+`;
+
+const Goback = styled.img`
+  width: 50px;
+  heigth: 50px;
 `;
 
 class Sticky extends Component {
@@ -63,13 +68,14 @@ class Sticky extends Component {
             position: this.state.scrollingLock ? "fixed" : "relative",
             marginTop: this.state.scrollingLock ? "50px" : "5000px",
             marginRight: this.state.scrollingLock ? "-120px" : "-120px",
+            marginLeft: this.state.scrollingLock ? "-20px" : "-20px",
             paddingTop: this.state.scrollingLock ? "250px" : "250px",
             width: "10%",
             cursor: "pointer"
           }}
         >
           <a onClick={this.toTop.bind(this)}>
-            <img className="toTop" src={require("../images/cat.gif")} />
+            <Goback src={require("../images/cat.gif")} />
           </a>{" "}
         </div>
       </Contribute>
