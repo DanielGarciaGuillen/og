@@ -122,8 +122,15 @@ article {
   justify-self: start;
   font-size: 50px;
 }
-.buttons {
+.menu {
   grid-area: containerR;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  align-items: center;
+}
+
+.buttons {
   display: flex;
   flex-direction: column;
   flex-wrap: nowrap;
@@ -131,13 +138,16 @@ article {
   align-items: center;
   padding-top: 50px;
 }
-.button {
+.noButtons {
+  display: none;
+}
+.theme {
   background: none;
   color: black;
   text-transform: uppercase;
   border: 1px solid #e4e9ee;
   border-radius: 3px;
-  height: 35px;
+  height: 30px;
   width: 60%;
   padding: 3px;
   margin: 10px;
@@ -145,7 +155,7 @@ article {
   font-family: "Roboto Slab", serif;
 }
 
-button:focus {
+.theme:focus {
   outline: none !important;
   border-color: none;
   box-shadow: 0 0 10px #feac5e;
@@ -167,12 +177,26 @@ button:focus {
 .spinner {
   grid-area: containerL;
 }
+a.toggle {
+  background: none;
+  color: black;
+  text-transform: uppercase;
+  border: 1px solid #e4e9ee;
+  border-radius: 3px;
+  /* height: 30px; */
+  /* width: 60%; */
+  padding: 9px;
+  font-size: 15px;
+  margin: 10px;
+  cursor: pointer;
+  font-family: "Roboto Slab", serif;
+}
 
 @media only screen and (max-width: 850px) {
   /* For mobile phones: */
   .container {
     grid-template-columns: 1fr;
-    grid-template-rows: 60px 90px 580px auto 100px;
+    grid-template-rows: 60px 90px auto auto 100px;
     grid-column-gap: 5px;
     grid-row-gap: 5px;
     grid-template-areas:
@@ -188,16 +212,25 @@ button:focus {
   body {
     font-size: 50%;
   }
-
-  .buttons {
+  .menu {
     grid-area: buttonM;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    align-items: center;
+  }
+
+  noButtons {
+    display: none;
+  }
+  .buttons {
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
     flex-wrap: wrap;
     padding-top: 0;
   }
-  .button {
+  .theme {
     font-size: 11px;
     height: 50px;
     box-sizing: border-box;
