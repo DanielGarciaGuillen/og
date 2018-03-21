@@ -88,8 +88,9 @@ class App extends Component {
         <div className="header" id="animationBackground" />
         <h1 className="title">
           {" "}
-          DEsign.!.<br />{" "}
+          DEsign.!.<br />
         </h1>
+        <h5 className="subtitle">creative gifs</h5>
         {/* Buttons */}
         <ChangeTheme onClick={this.handleUpdateQuery.bind(this)} />
         <Sticky />

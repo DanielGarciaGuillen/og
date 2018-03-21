@@ -98,12 +98,8 @@ export class ChangeTheme extends React.Component {
             >
               Digital Art
             </button>
-            <button
-              className="theme"
-              value="pixelart"
-              onClick={this.handleQuery}
-            >
-              Pixel Art
+            <button className="theme" value="" onClick={this.handleQuery}>
+              Pixel
             </button>
             <button className="theme" value="8bit" onClick={this.handleQuery}>
               8bit
@@ -126,18 +122,22 @@ export class ChangeTheme extends React.Component {
               space
             </button>
 
+            <button className="theme" value="glitch" onClick={this.handleQuery}>
+              Glitch
+            </button>
             <button
               className="theme"
-              value="videogames"
+              value="typography"
               onClick={this.handleQuery}
             >
-              Games
+              typography
             </button>
-            <button className="theme" value="anime" onClick={this.handleQuery}>
-              Anime
-            </button>
-            <button className="theme" value="scifi" onClick={this.handleQuery}>
-              sci fi
+            <button
+              className="theme"
+              value="abstract"
+              onClick={this.handleQuery}
+            >
+              abstract
             </button>
             <button className="theme" value="trippy" onClick={this.handleQuery}>
               trippy
@@ -148,6 +148,20 @@ export class ChangeTheme extends React.Component {
               onClick={this.handleQuery}
             >
               vintage
+            </button>
+            <button
+              className="theme"
+              value="illustration"
+              onClick={this.handleQuery}
+            >
+              illustration
+            </button>
+            <button
+              className="theme"
+              value="photography"
+              onClick={this.handleQuery}
+            >
+              photography
             </button>
             <div className="me">
               by <br />
@@ -204,10 +218,10 @@ export class ChangeTheme extends React.Component {
             </button>
             <button
               className="theme"
-              value="pixelart"
+              value="pixel"
               onClick={this.handleQueryDesktop}
             >
-              Pixel Art
+              Pixel
             </button>
             <button
               className="theme"
@@ -248,24 +262,24 @@ export class ChangeTheme extends React.Component {
 
             <button
               className="theme"
-              value="videogames"
+              value="glitch"
               onClick={this.handleQueryDesktop}
             >
-              Games
+              Glitch
             </button>
             <button
               className="theme"
-              value="anime"
+              value="typography"
               onClick={this.handleQueryDesktop}
             >
-              Anime
+              typography
             </button>
             <button
               className="theme"
-              value="scifi"
+              value="abstract"
               onClick={this.handleQueryDesktop}
             >
-              sci fi
+              abstract
             </button>
             <button
               className="theme"
@@ -280,6 +294,20 @@ export class ChangeTheme extends React.Component {
               onClick={this.handleQueryDesktop}
             >
               vintage
+            </button>
+            <button
+              className="theme"
+              value="illustration"
+              onClick={this.handleQueryDesktop}
+            >
+              illustration
+            </button>
+            <button
+              className="theme"
+              value="photography"
+              onClick={this.handleQueryDesktop}
+            >
+              photography
             </button>
             <div className="me">
               by <br />

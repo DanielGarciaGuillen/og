@@ -120,7 +120,20 @@ article {
   align-self: center;
   text-align: center;
   justify-self: start;
-  font-size: 50px;
+  font-size: 55px;
+  color: #959e9f;
+}
+.subtitle {
+  grid-area: searchM;
+  -ms-flex-item-align: center;
+  align-self: center;
+  text-align: center;
+  justify-self: start;
+  font-size: 16px;
+  padding-top: 69px;
+  text-transform: uppercase;
+  font-weight: 300;
+  opacity: 0.9;
 }
 .menu {
   grid-area: containerR;
@@ -148,6 +161,7 @@ article {
   border: 1px solid #e4e9ee;
   border-radius: 3px;
   height: 30px;
+  opacity: 0.8;
   width: 60%;
   padding: 3px;
   margin: 10px;
@@ -178,25 +192,36 @@ article {
   grid-area: containerL;
 }
 button.toggle {
-  background: none;
-  color: black;
+  background: #feac5e; /* fallback for old browsers */
+  background: -webkit-linear-gradient(
+    to right,
+    #4bc0c8,
+    #c779d0,
+    #feac5e
+  ); /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(
+    to right,
+    #4bc0c8,
+    #c779d0,
+    #feac5e
+  ); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+  color: white;
   text-transform: uppercase;
-  border: 1px solid #e4e9ee;
+  border: 0px solid #c779d0;
   border-radius: 3px;
   /* height: 30px; */
   /* width: 60%; */
-  padding: 9px;
-  font-size: 15px;
-  margin: 10px;
+  padding: 5px;
+  font-size: 12px;
+  margin: 20px;
   cursor: pointer;
   font-family: "Roboto Slab", serif;
+  -ms-flex-align: center;
   align-items: center;
 }
-
 button.toggle:focus {
   outline: none !important;
 }
-
 @media only screen and (max-width: 850px) {
   /* For mobile phones: */
   .container {
@@ -225,24 +250,29 @@ button.toggle:focus {
     flex-wrap: wrap;
     padding-top: 0;
   }
-
   noButtons {
     display: none;
   }
   .buttons {
+    display: -ms-flexbox;
     display: flex;
+    -ms-flex-direction: column;
     flex-direction: column;
+    -ms-flex-pack: start;
     justify-content: flex-start;
+    -ms-flex-wrap: wrap;
     flex-wrap: wrap;
-    padding-top: 0;
+    padding-top: 10px;
+    height: 600px;
+    width: 300px;
   }
   .theme {
     font-size: 11px;
-    height: 50px;
+    height: 42px;
+    -webkit-box-sizing: border-box;
     box-sizing: border-box;
-    width: 50%;
+    width: 37%;
   }
-
   .spinner {
     grid-area: containerM;
   }
