@@ -177,7 +177,7 @@ article {
 .spinner {
   grid-area: containerL;
 }
-a.toggle {
+button.toggle {
   background: none;
   color: black;
   text-transform: uppercase;
@@ -190,6 +190,11 @@ a.toggle {
   margin: 10px;
   cursor: pointer;
   font-family: "Roboto Slab", serif;
+  align-items: center;
+}
+
+button.toggle:focus {
+  outline: none !important;
 }
 
 @media only screen and (max-width: 850px) {
@@ -216,8 +221,9 @@ a.toggle {
     grid-area: buttonM;
     display: flex;
     flex-direction: column;
-    flex-wrap: nowrap;
-    align-items: center;
+    justify-content: flex-start;
+    flex-wrap: wrap;
+    padding-top: 0;
   }
 
   noButtons {

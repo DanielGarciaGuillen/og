@@ -39,6 +39,7 @@ export class ChangeTheme extends React.Component {
     await this.setStateAsync({ text: query, show: false });
     console.log(this.state);
     await this.validateTitle();
+    window.scrollTo(0, 0);
   }
 
   async handleQueryDesktop({ currentTarget }) {
@@ -63,13 +64,13 @@ export class ChangeTheme extends React.Component {
       //MOBILE ON CLICK CLOSE MENU
       <div className="menu">
         <Mobile>
-          <a
+          <button
             className="toggle"
             checked={this.state.show}
             onClick={this.toggleButtons}
           >
-            Theme
-          </a>
+            Pick a Theme<br /> 👇
+          </button>
 
           <div className={this.state.show ? "buttons" : "noButtons"}>
             <button className="theme" value="design" onClick={this.handleQuery}>
@@ -163,7 +164,7 @@ export class ChangeTheme extends React.Component {
         </Mobile>
         {/*   //DESKTOP ON CLICK DONT CLOSE MENU */}
         <Desktop>
-          <div>
+          <div className="buttons">
             <button
               className="theme"
               value="design"
