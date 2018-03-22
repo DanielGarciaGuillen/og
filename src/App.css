@@ -192,19 +192,9 @@ article {
   grid-area: containerL;
 }
 button.toggle {
-  background: #feac5e; /* fallback for old browsers */
-  background: -webkit-linear-gradient(
-    to right,
-    #4bc0c8,
-    #c779d0,
-    #feac5e
-  ); /* Chrome 10-25, Safari 5.1-6 */
-  background: linear-gradient(
-    to right,
-    #4bc0c8,
-    #c779d0,
-    #feac5e
-  ); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+  background: #d66d75;
+  background: -webkit-linear-gradient(to right, #e29587, #d66d75);
+  background: linear-gradient(to right, #e29587, #d66d75);
   color: white;
   text-transform: uppercase;
   border: 0px solid #c779d0;
