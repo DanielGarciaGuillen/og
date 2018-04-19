@@ -13,8 +13,8 @@ const ChangeKey = "&api_key=dc6zaTOxFJmzC&limit=20";
 var list = [];
 
 class App extends Component {
-  constructor(props) {
-    super(props);
+  constructor() {
+    super();
     this.state = {
       list: [],
       offset: 0,
@@ -25,31 +25,29 @@ class App extends Component {
     this.handleUpdateQuery = this.handleUpdateQuery.bind(this);
   }
 
+  //Async function to change state
   setStateAsync(state) {
     return new Promise(resolve => {
       this.setState(state, resolve);
     });
   }
-  toTop() {
-    window.scrollTo(0, 0);
-  }
 
+  //API call
   async getGifs() {
     await this.setStateAsync({ offset: this.state.offset + 20, loading: true });
     const res = await fetch(
       API + `${this.state.query}` + Key + `${this.state.offset}`
     );
-    console.log(this.state);
+
     const { data } = await res.json();
+    //Spread operator to update list of Gifs
     list.push(...data);
     await this.setStateAsync({ list: list, loading: false });
-    console.log(this.state);
   }
 
   //Callback from Child ChangeTheme Component
   async handleUpdateQuery(query) {
     list.length = 0;
-    console.log(this.state);
 
     await this.setStateAsync({
       query: query,
@@ -59,12 +57,11 @@ class App extends Component {
     });
 
     const res = await fetch(API + `${this.state.query}` + ChangeKey);
-    console.log(this.state);
+
     const { data } = await res.json();
     list.push(...data);
     await this.setStateAsync({ list: list });
     await this.setStateAsync({ loading: false });
-    console.log(this.state);
   }
 
   render() {
@@ -87,20 +84,20 @@ class App extends Component {
         {/* //Header */}
         <div className="header" id="animationBackground" />
         <h1 className="title">
-          {" "}
           DEsign.!.<br />
         </h1>
         <h5 className="subtitle">creative gifs</h5>
+
         {/* Buttons */}
-        <ChangeTheme onClick={this.handleUpdateQuery.bind(this)} />
+        <ChangeTheme onClick={this.handleUpdateQuery} />
+
+        {/*  Scroll to top */}
         <Sticky />
+
         {/* Gifs */}
-
-        {/* Infite Scroll, fire fuctions on props when reached on the website */}
-
         <div className="main gallery">
-          {" "}
           {listItems}
+          {/* Infite Scroll, fires function when user reachs end of gifs*/}
           <Waypoint onEnter={this.getGifs} />
         </div>
 

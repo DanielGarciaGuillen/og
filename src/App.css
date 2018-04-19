@@ -3,7 +3,8 @@
 }
 body {
   padding: 1rem;
-  font-family: "Roboto Slab", serif;
+  background-color: #fbfbfb;
+  font-family: "Catamaran", sans-serif;
 }
 
 /* Just for the fallback layout */
@@ -12,47 +13,10 @@ main {
   max-width: 500px;
   margin: 0 auto;
 }
-article {
-  margin: 1rem 0;
-}
 
 /* Now lets do a Grid-based layout */
 
 @supports (display: grid) {
-  .main {
-    margin: 0;
-  }
-  .header {
-    grid-column: 2/4;
-    text-align: center;
-    height: 80%;
-    background: #0a0f0d;
-    border-radius: 3px;
-    padding-top: 8px;
-    color: #fdffff;
-    font-size: 18px;
-    font-weight: bold;
-    align-self: start;
-  }
-
-  #animationBackground {
-    background: linear-gradient(-45deg, #feac5e, #c779d0, #4bc0c8);
-    background-size: 400% 400%;
-    -webkit-animation: Gradient 50s ease infinite;
-    -moz-animation: Gradient 50s ease infinite;
-    animation: Gradient 50s ease infinite;
-  }
-  @-webkit-keyframes Gradient {
-    0% {
-      background-position: 0% 50%;
-    }
-    50% {
-      background-position: 100% 50%;
-    }
-    100% {
-      background-position: 0% 50%;
-    }
-  }
   .container {
     display: grid;
     min-height: 100vh;
@@ -65,10 +29,34 @@ article {
       "searchL searchM searchR "
       "containerL containerM containerR"
       "footerL footerM footerR ";
-    background-color: #fff;
-    font-family: "Catamaran", sans-serif;
-    max-width: 100vw;
   }
+
+  .header {
+    grid-column: 2/4;
+    height: 80%;
+    border-radius: 10px;
+    align-self: start;
+  }
+
+  #animationBackground {
+    background: linear-gradient(-45deg, #feac5e, #c779d0, #4bc0c8);
+    background-size: 400% 400%;
+    -webkit-animation: Gradient 25s ease infinite;
+    -moz-animation: Gradient 25s ease infinite;
+    animation: Gradient 25s ease infinite;
+  }
+  @-webkit-keyframes Gradient {
+    0% {
+      background-position: 0% 50%;
+    }
+    50% {
+      background-position: 100% 50%;
+    }
+    100% {
+      background-position: 0% 50%;
+    }
+  }
+
   .main {
     grid-area: containerM;
     display: grid;
@@ -78,47 +66,9 @@ article {
   }
 }
 
-.gallery {
-  font-family: Avenir, Roboto, Helvetica, san-serif;
-  font-size: 80%;
-}
-.gif {
-  display: flex;
-  flex-flow: column;
-  border-radius: 3rem;
-  padding: 2rem;
-  justify-content: center;
-  align-self: center;
-  justify-self: center;
-  transition: 1s;
-}
-.gif :hover {
-  transform: translate(0, -5px);
-  -ms-transform: scale(1.08, 1.08); /* IE 9 */
-  -webkit-transform: scale(1.08, 1.08); /* Safari */
-  transform: scale(1.08, 1.08);
-}
-.gif > h1 {
-  margin: 1rem 1rem 0;
-}
-
-.gif > p {
-  margin: 0.25em 1rem 1rem;
-}
-
-.linkGif > img {
-  order: -1;
-  align-self: center;
-  max-height: 250px;
-  max-width: 250px;
-  /* min-width: 200px;
-  min-height: 200px; */
-  border-radius: 3px;
-}
 .title {
   grid-area: searchM;
   align-self: center;
-  text-align: center;
   justify-self: start;
   font-size: 55px;
   color: #959e9f;
@@ -127,8 +77,6 @@ article {
   grid-area: searchM;
   -ms-flex-item-align: center;
   align-self: center;
-  text-align: center;
-  justify-self: start;
   font-size: 16px;
   padding-top: 69px;
   text-transform: uppercase;
@@ -141,6 +89,57 @@ article {
   flex-direction: column;
   flex-wrap: nowrap;
   align-items: center;
+  padding-top: 12px;
+}
+button.toggle:focus {
+  outline: none !important;
+}
+
+.toggle {
+  background: #d66d75;
+  background: -webkit-linear-gradient(to right, #e29587, #d66d75);
+  background: linear-gradient(to right, #e29587, #d66d75);
+  color: white;
+  text-transform: uppercase;
+  border: 0px solid #c779d0;
+  border-radius: 3px;
+  height: 50px;
+  padding: 5px;
+  font-size: 15px;
+  margin: 20px;
+  cursor: pointer;
+  font-family: "Roboto Slab", serif;
+  -ms-flex-align: center;
+  align-items: center;
+}
+
+.toggle:hover {
+  background: #d66d75;
+  background: -webkit-linear-gradient(to right, #4bc0c8, #c779d0);
+  background: linear-gradient(to right, #4bc0c8, #c779d0);
+}
+
+.toggle:hover > .emojihand {
+  padding-top: 4px;
+  animation: bounce 0.8s infinite alternate;
+  -webkit-animation: bounce 0.8s infinite alternate;
+}
+
+@keyframes bounce {
+  from {
+    transform: translateY(-3px);
+  }
+  to {
+    transform: translateY(0px);
+  }
+}
+@-webkit-keyframes bounce {
+  from {
+    transform: translateY(-3px);
+  }
+  to {
+    transform: translateY(0px);
+  }
 }
 
 .buttons {
@@ -149,11 +148,11 @@ article {
   flex-wrap: nowrap;
   width: 80%;
   align-items: center;
-  padding-top: 50px;
 }
 .noButtons {
   display: none;
 }
+
 .theme {
   background: none;
   color: black;
@@ -166,13 +165,6 @@ article {
   padding: 3px;
   margin: 10px;
   cursor: pointer;
-  font-family: "Roboto Slab", serif;
-}
-
-.theme:focus {
-  outline: none !important;
-  border-color: none;
-  box-shadow: 0 0 10px #feac5e;
 }
 
 .createdBy {
@@ -188,30 +180,34 @@ article {
   border-radius: 100px;
 }
 
+.gif {
+  display: flex;
+  flex-flow: column;
+  border-radius: 3rem;
+  padding: 2rem;
+  justify-content: center;
+  align-self: center;
+  justify-self: center;
+  transition: all 200ms ease-in;
+  transform: scale(1);
+}
+.gif:hover {
+  z-index: 2;
+  transition: all 200ms ease-in;
+  transform: scale(1.25);
+}
+
+.linkGif > img {
+  order: -1;
+  align-self: center;
+  max-height: 250px;
+  max-width: 250px;
+  border-radius: 3px;
+}
 .spinner {
   grid-area: containerL;
 }
-button.toggle {
-  background: #d66d75;
-  background: -webkit-linear-gradient(to right, #e29587, #d66d75);
-  background: linear-gradient(to right, #e29587, #d66d75);
-  color: white;
-  text-transform: uppercase;
-  border: 0px solid #c779d0;
-  border-radius: 3px;
-  /* height: 30px; */
-  /* width: 60%; */
-  padding: 5px;
-  font-size: 12px;
-  margin: 20px;
-  cursor: pointer;
-  font-family: "Roboto Slab", serif;
-  -ms-flex-align: center;
-  align-items: center;
-}
-button.toggle:focus {
-  outline: none !important;
-}
+
 @media only screen and (max-width: 850px) {
   /* For mobile phones: */
   .container {
