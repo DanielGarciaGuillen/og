@@ -45,6 +45,14 @@ main {
     -moz-animation: Gradient 25s ease infinite;
     animation: Gradient 25s ease infinite;
   }
+
+  #animationBackground:hover {
+    background: linear-gradient(-45deg, #feac5e, #c779d0, #4bc0c8);
+    background-size: 400% 400%;
+    -webkit-animation: Gradient 5s ease infinite;
+    -moz-animation: Gradient 5s ease infinite;
+    animation: Gradient 5s ease infinite;
+  }
   @-webkit-keyframes Gradient {
     0% {
       background-position: 0% 50%;
@@ -194,7 +202,7 @@ button.toggle:focus {
 .gif:hover {
   z-index: 2;
   transition: all 200ms ease-in;
-  transform: scale(1.25);
+  transform: scale(1.13);
 }
 
 .linkGif > img {
