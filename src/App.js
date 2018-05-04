@@ -40,10 +40,7 @@ class App extends Component {
       .then(() => {
         const { data } = results;
         this.setState({ list: data });
-        console.log(this.state);
       });
-
-    //Spread operator to update list of Gifs
   }
 
   toggleButtons(e) {
@@ -51,17 +48,19 @@ class App extends Component {
   }
 
   handleQuery({ currentTarget }) {
+    list.length = 0;
     query = currentTarget.value;
     console.log(query);
     this.setState(
       {
         query: query,
-        loading: true
+        list: list,
+        offset: 0,
+        loading: true,
+        show: false
       },
       this.getGifs
     );
-
-    console.log(this.state);
   }
 
   //API call
@@ -69,27 +68,24 @@ class App extends Component {
     fetch(API + `${this.state.query}` + Key + `${this.state.offset}`)
       .then(res => res.json())
       .then(function(MyJson) {
-        const results = MyJson;
+        results = MyJson;
+      })
+      .then(() => {
         const { data } = results;
         list.push(...data);
+        this.setState({ list, loading: false });
       });
-    //Spread operator to update list of Gifs
 
-    this.setState({ list: list, loading: false });
+    console.log(this.state);
   }
 
   moreGifs() {
-    list.length = 0;
-    fetch(API + `${this.state.query}` + Key + `${this.state.offset}`)
-      .then(res => res.json())
-      .then(function(MyJson) {
-        const results = MyJson;
-        const { data } = results;
-        list.push(...data);
-      });
-    //Spread operator to update list of Gifs
-
-    this.setState({ list: list, loading: false });
+    results.length = 0;
+    this.setState(
+      { offset: this.state.offset + 20, loading: true },
+      this.getGifs
+    );
+    console.log(this.state);
   }
 
   render() {
