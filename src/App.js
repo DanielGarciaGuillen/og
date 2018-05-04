@@ -9,7 +9,7 @@ import Sticky from "./components/totop";
 import buttonList from "./buttonList";
 
 const API = "http://api.giphy.com/v1/gifs/search?q=";
-const Key = "&api_key=dc6zaTOxFJmzC&limit=20&offset=";
+const Key = "&api_key=dc6zaTOxFJmzC&limit=12&offset=";
 
 var list = [];
 let query = "";
@@ -48,6 +48,7 @@ class App extends Component {
   }
 
   handleQuery({ currentTarget }) {
+    window.scrollTo(0, 0);
     list.length = 0;
     query = currentTarget.value;
     console.log(query);
@@ -82,7 +83,7 @@ class App extends Component {
   moreGifs() {
     results.length = 0;
     this.setState(
-      { offset: this.state.offset + 20, loading: true },
+      { offset: this.state.offset + 12, loading: true },
       this.getGifs
     );
     console.log(this.state);
