@@ -3,16 +3,17 @@ import Waypoint from "react-waypoint";
 import { BeatLoader } from "react-spinners";
 
 import "./App.css";
-import ChangeTheme from "./components/button";
+/* import ChangeTheme from "./components/button"; */
 import Sticky from "./components/totop";
+
+import buttonList from "./buttonList";
 
 const API = "http://api.giphy.com/v1/gifs/search?q=";
 const Key = "&api_key=dc6zaTOxFJmzC&limit=20&offset=";
 const ChangeKey = "&api_key=dc6zaTOxFJmzC&limit=20";
 
 var list = [];
-
-var buttons = {};
+let query = "";
 
 class App extends Component {
   constructor() {
@@ -21,38 +22,52 @@ class App extends Component {
       list: [],
       offset: 0,
       query: "design",
-      loading: false
+      loading: false,
+      show: false
     };
     this.getGifs = this.getGifs.bind(this);
-    this.handleUpdateQuery = this.handleUpdateQuery.bind(this);
+
+    this.toggleButtons = this.toggleButtons.bind(this);
   }
 
-  // Loop trough buttons to assing value and text
+  /* componentDidMount() {
+    this.getGifs;
+  } */
 
-  //
+  toggleButtons(e) {
+    this.setState({ show: !this.state.show });
+    console.log(this.state);
+    console.log("button clicked");
+  }
 
-  //Async function to change state
-  setStateAsync(state) {
-    return new Promise(resolve => {
-      this.setState(state, resolve);
-    });
+  handleQuery({ currentTarget }) {
+    query = currentTarget.value;
+    this.setState(
+      {
+        query,
+        loading: true,
+        offset: this.state.offset + 20
+      },
+      this.getGifs
+    );
   }
 
   //API call
-  async getGifs() {
-    await this.setStateAsync({ offset: this.state.offset + 20, loading: true });
-    const res = await fetch(
-      API + `${this.state.query}` + Key + `${this.state.offset}`
-    );
-
-    const { data } = await res.json();
+  getGifs() {
+    fetch(API + `${this.state.query}` + Key + `${this.state.offset}`)
+      .then(res => res.json())
+      .then(function(MyJson) {
+        const results = MyJson;
+        const { data } = results;
+        list.push(...data);
+      });
     //Spread operator to update list of Gifs
-    list.push(...data);
-    await this.setStateAsync({ list: list, loading: false });
+
+    this.setState({ list: list, loading: false });
   }
 
   //Callback from Child ChangeTheme Component
-  async handleUpdateQuery(query) {
+  /*   async handleUpdateQuery(query) {
     list.length = 0;
 
     await this.setStateAsync({
@@ -68,9 +83,17 @@ class App extends Component {
     list.push(...data);
     await this.setStateAsync({ list: list });
     await this.setStateAsync({ loading: false });
-  }
+  } */
 
   render() {
+    const buttons = buttonList.map(button => {
+      return (
+        <button className="theme" value={button.id} onClick={this.handleQuery}>
+          {button.button}
+        </button>
+      );
+    });
+
     //Mapping through the list array.
     const listItems = list.map(gif => (
       <li className="gif" key={gif.id}>
@@ -95,18 +118,43 @@ class App extends Component {
         <h5 className="subtitle">creative gifs</h5>
 
         {/* Buttons */}
-        <ChangeTheme onClick={this.handleUpdateQuery} />
 
+        <div className="menu">
+          <button
+            className="toggle"
+            checked={this.state.show}
+            onClick={this.toggleButtons}
+          >
+            Pick a Theme<br />
+            <div className="emojihand">
+              <span role="img" aria-label="HandDown">
+                👇
+              </span>
+            </div>
+          </button>
+          <div className={this.state.show ? "buttons" : "noButtons"}>
+            {buttons}
+            <div className="me">
+              by <br />
+              <a href="https://www.linkedin.com/in/danielgguillen/?locale=en_US">
+                {" "}
+                <img
+                  className="myGif"
+                  src={require("./images/mygif.gif")}
+                  alt="pictureofmyself"
+                />
+              </a>
+            </div>
+          </div>
+        </div>
         {/*  Scroll to top */}
         <Sticky />
-
         {/* Gifs */}
         <div className="main gallery">
           {listItems}
           {/* Infite Scroll, fires function when user reachs end of gifs*/}
           <Waypoint onEnter={this.getGifs} />
         </div>
-
         {/* Loading Animation*/}
         <div className="spinner">
           <BeatLoader
