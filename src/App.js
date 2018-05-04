@@ -12,6 +12,8 @@ const ChangeKey = "&api_key=dc6zaTOxFJmzC&limit=20";
 
 var list = [];
 
+var buttons = {};
+
 class App extends Component {
   constructor() {
     super();
@@ -24,6 +26,10 @@ class App extends Component {
     this.getGifs = this.getGifs.bind(this);
     this.handleUpdateQuery = this.handleUpdateQuery.bind(this);
   }
+
+  // Loop trough buttons to assing value and text
+
+  //
 
   //Async function to change state
   setStateAsync(state) {
