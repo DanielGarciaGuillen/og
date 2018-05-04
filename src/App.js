@@ -10,14 +10,14 @@ import buttonList from "./buttonList";
 
 const API = "http://api.giphy.com/v1/gifs/search?q=";
 const Key = "&api_key=dc6zaTOxFJmzC&limit=20&offset=";
-const ChangeKey = "&api_key=dc6zaTOxFJmzC&limit=20";
 
 var list = [];
 let query = "";
+let results = [];
 
 class App extends Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
     this.state = {
       list: [],
       offset: 0,
@@ -26,30 +26,42 @@ class App extends Component {
       show: false
     };
     this.getGifs = this.getGifs.bind(this);
-
+    this.moreGifs = this.moreGifs.bind(this);
     this.toggleButtons = this.toggleButtons.bind(this);
+    this.handleQuery = this.handleQuery.bind(this);
   }
 
-  /* componentDidMount() {
-    this.getGifs;
-  } */
+  componentDidMount() {
+    fetch(API + `${this.state.query}` + Key)
+      .then(res => res.json())
+      .then(function(MyJson) {
+        results = MyJson;
+      })
+      .then(() => {
+        const { data } = results;
+        this.setState({ list: data });
+        console.log(this.state);
+      });
+
+    //Spread operator to update list of Gifs
+  }
 
   toggleButtons(e) {
     this.setState({ show: !this.state.show });
-    console.log(this.state);
-    console.log("button clicked");
   }
 
   handleQuery({ currentTarget }) {
     query = currentTarget.value;
+    console.log(query);
     this.setState(
       {
-        query,
-        loading: true,
-        offset: this.state.offset + 20
+        query: query,
+        loading: true
       },
       this.getGifs
     );
+
+    console.log(this.state);
   }
 
   //API call
@@ -66,26 +78,22 @@ class App extends Component {
     this.setState({ list: list, loading: false });
   }
 
-  //Callback from Child ChangeTheme Component
-  /*   async handleUpdateQuery(query) {
+  moreGifs() {
     list.length = 0;
+    fetch(API + `${this.state.query}` + Key + `${this.state.offset}`)
+      .then(res => res.json())
+      .then(function(MyJson) {
+        const results = MyJson;
+        const { data } = results;
+        list.push(...data);
+      });
+    //Spread operator to update list of Gifs
 
-    await this.setStateAsync({
-      query: query,
-      list: list,
-      offset: 0,
-      loading: true
-    });
-
-    const res = await fetch(API + `${this.state.query}` + ChangeKey);
-
-    const { data } = await res.json();
-    list.push(...data);
-    await this.setStateAsync({ list: list });
-    await this.setStateAsync({ loading: false });
-  } */
+    this.setState({ list: list, loading: false });
+  }
 
   render() {
+    const { list } = this.state;
     const buttons = buttonList.map(button => {
       return (
         <button className="theme" value={button.id} onClick={this.handleQuery}>
@@ -153,7 +161,7 @@ class App extends Component {
         <div className="main gallery">
           {listItems}
           {/* Infite Scroll, fires function when user reachs end of gifs*/}
-          <Waypoint onEnter={this.getGifs} />
+          <Waypoint onEnter={this.moreGifs} />
         </div>
         {/* Loading Animation*/}
         <div className="spinner">
