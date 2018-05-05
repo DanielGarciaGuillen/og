@@ -3,9 +3,7 @@ import Waypoint from "react-waypoint";
 import { BeatLoader } from "react-spinners";
 
 import "./App.css";
-/* import ChangeTheme from "./components/button"; */
 import Sticky from "./components/totop";
-
 import buttonList from "./buttonList";
 
 const API = "http://api.giphy.com/v1/gifs/search?q=";
@@ -21,7 +19,7 @@ class App extends Component {
     this.state = {
       list: [],
       offset: 0,
-      query: "design",
+      query: "abstract",
       loading: false,
       show: false
     };
@@ -76,8 +74,6 @@ class App extends Component {
         list.push(...data);
         this.setState({ list, loading: false });
       });
-
-    console.log(this.state);
   }
 
   moreGifs() {
@@ -86,7 +82,6 @@ class App extends Component {
       { offset: this.state.offset + 12, loading: true },
       this.getGifs
     );
-    console.log(this.state);
   }
 
   render() {
