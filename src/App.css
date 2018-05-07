@@ -210,8 +210,8 @@ button.toggle:focus {
   align-self: center;
   max-height: 250px;
   max-width: 250px;
-  min-height: 195px;
-  min-width: 195px;
+  min-height: 220px;
+  min-width: 220px;
   border-radius: 3px;
 }
 .spinner {

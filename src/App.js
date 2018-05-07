@@ -101,7 +101,7 @@ class App extends Component {
           <img
             className="gifImage"
             alt={gif.title}
-            src={gif.images.downsized.url}
+            src={gif.images.fixed_width.url}
           />
         </a>
       </li>
