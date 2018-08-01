@@ -8,7 +8,7 @@ Choose your theme, browse the gifs and get some inspiration.
 
 ## Demo
 
-## [DEsign.!.](https://dedd.co)
+## [DEsign.!.](http://dedd.co)
 
 ![DEsign.!.](/src/images/test.png?raw=true "Dedd")
 
