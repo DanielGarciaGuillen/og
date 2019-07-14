@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import styled from "styled-components";
 
-import "../App.css";
+import "./App.css";
 
 const Contribute = styled.div`
   grid-area: containerR;

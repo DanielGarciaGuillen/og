@@ -187,12 +187,16 @@ button.toggle:focus {
   height: 115px;
   border-radius: 100px;
 }
+.giphyLogo {
+  width: 130px;
+  margin-top: 20px;
+}
 
 .gif {
   display: flex;
   flex-flow: column;
   border-radius: 3rem;
-  padding: 2rem;
+  padding-top: 2rem;
   justify-content: center;
   align-self: center;
   justify-self: center;
@@ -210,8 +214,8 @@ button.toggle:focus {
   align-self: center;
   max-height: 250px;
   max-width: 250px;
-  min-height: 220px;
-  min-width: 220px;
+  min-height: 120px;
+  min-width: 120px;
   border-radius: 3px;
 }
 .spinner {
@@ -289,4 +293,19 @@ button.toggle:focus {
     justify-self: end;
     width: 70%;
   }
+}
+
+.fade-enter {
+  opacity: 0.01;
+}
+.fade-enter-active {
+  opacity: 1;
+  transition: opacity 500ms ease-in;
+}
+.fade-exit {
+  opacity: 1;
+}
+.fade-exit-active {
+  opacity: 0.01;
+  transition: opacity 500ms ease-in;
 }
