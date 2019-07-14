@@ -1,4 +1,7 @@
 import React, { Component } from "react";
+import styled from 'styled-components';
+
+
 
 import Waypoint from "react-waypoint";
 import { BeatLoader } from "react-spinners";
@@ -6,7 +9,8 @@ import { CSSTransitionGroup } from "react-transition-group";
 import "./App.css";
 import Sticky from "./totop";
 import GifList from "./gifList";
-import buttonList from "./buttonList";
+import PickGifTheme from './PickGifTheme';
+import Header from './Header';
 
 const API = "http://api.giphy.com/v1/gifs/search?q=";
 const Key = "&api_key=dc6zaTOxFJmzC&limit=12&offset=";
@@ -14,6 +18,21 @@ const Key = "&api_key=dc6zaTOxFJmzC&limit=12&offset=";
 var list = [];
 let query = "";
 let results = [];
+
+const AppLayout = styled.div`
+    display: grid;
+    min-height: 100vh;
+    grid-template-columns: 150px 1fr 250px;
+    grid-template-rows: 60px 90px auto 100px;
+    grid-column-gap: 5px;
+    grid-row-gap: 5px;
+    grid-template-areas:
+      "headerL headerM headerR "
+        "searchL searchM searchR "
+        "containerL containerM containerR"
+        "footerL footerM footerR ";
+    
+`
 
 class App extends Component {
   constructor(props) {
@@ -90,7 +109,7 @@ class App extends Component {
     const { list } = this.state;
     console.log(list)
 
-    
+  /*   
     const buttons = buttonList.map(button => {
       return (
         <button className="theme" key={button.id} value={button.id} onClick={this.handleQuery}>
@@ -98,7 +117,7 @@ class App extends Component {
         </button>
       );
     });
-
+ */
     const listItems = list.map(gif => (
       <li className="gif" key={gif.id}>
         <a className="linkGif" href={gif.url} target="_blank">
@@ -113,16 +132,19 @@ class App extends Component {
 
     return (
       //GRID
-      <div className="container">
+      <AppLayout>
         {/* //Header */}
-        <div className="header" id="animationBackground" />
+        <Header />
+      
         <h1 className="title">
           DEsign.!.<br />
         </h1>
         <h5 className="subtitle">creative gifs</h5>
 
+        <PickGifTheme />
+
      
-      </div>
+      </AppLayout>
     );
   }
 }
