@@ -1,10 +1,8 @@
-import React, { Component } from 'react';
+import React, { Component } from "react";
 import themeList from "../config/gifThemeList";
-import styled from 'styled-components'
-import { isEmpty, sample } from 'lodash';
-import gifThemeList from '../config/gifThemeList';
-
-
+import styled from "styled-components";
+import { isEmpty, sample } from "lodash";
+import gifThemeList from "../config/gifThemeList";
 
 const ThemeMenu = styled.div`
   grid-area: containerR;
@@ -14,9 +12,9 @@ const ThemeMenu = styled.div`
   align-items: center;
   padding-top: 12px;
   button.toggle:focus {
-  outline: none !important;
+    outline: none !important;
   }
-`
+`;
 
 const ThemeButton = styled.button`
   background: none;
@@ -30,7 +28,7 @@ const ThemeButton = styled.button`
   padding: 3px;
   margin: 10px;
   cursor: pointer;
-`
+`;
 /* 
 button.toggle:focus {
   outline: none !important;
@@ -83,45 +81,47 @@ button.toggle:focus {
   }
 } */
 
-class GifMenu  extends Component {
+class GifMenu extends Component {
   constructor(props) {
-    super(props);   
+    super(props);
     this.state = {
       showMenu: false
     };
-  } 
+  }
 
   toggleButtons(e) {
-  this.setState({ show: !this.state.show });
+    this.setState({ show: !this.state.show });
   }
 
-  render(){
-
-     return(
-    <ThemeMenu>
-    <button
-            className="toggle"
-            checked={this.state.show}
-            onClick={this.toggleButtons}
-          >
-            Pick a Theme<br />
-            <div className="emojihand">
-              <span role="img" aria-label="HandDown">
-                👇
-              </span>
-            </div>
-          </button>
-    {isEmpty(gifThemeList) ? null :
-         ( gifThemeList.map(theme => (
-            <ThemeButton key={theme.id} value={theme.id} onClick={this.pickTheme}>
+  render() {
+    return (
+      <ThemeMenu>
+        <button
+          className="toggle"
+          checked={this.state.show}
+          onClick={this.toggleButtons}
+        >
+          Pick a Theme<br />
+          <div className="emojihand">
+            <span role="img" aria-label="HandDown">
+              👇
+            </span>
+          </div>
+        </button>
+        {isEmpty(gifThemeList)
+          ? null
+          : gifThemeList.map(theme => (
+              <ThemeButton
+                key={theme.id}
+                value={theme.id}
+                onClick={this.pickTheme}
+              >
                 {theme.buttonText}
-            </ThemeButton>
-         )))
-    } 
-    </ThemeMenu>
-    
-         )
-    }
+              </ThemeButton>
+            ))}
+      </ThemeMenu>
+    );
   }
+}
 
 export default GifMenu;

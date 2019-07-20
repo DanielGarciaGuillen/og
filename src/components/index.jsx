@@ -1,7 +1,5 @@
 import React, { Component } from "react";
-import styled from 'styled-components';
-
-
+import styled from "styled-components";
 
 import Waypoint from "react-waypoint";
 import { BeatLoader } from "react-spinners";
@@ -9,8 +7,8 @@ import { CSSTransitionGroup } from "react-transition-group";
 import "./App.css";
 import Sticky from "./totop";
 import GifList from "./gifList";
-import GifPickMenu from './GifPickMenu';
-import Header from './Header';
+import GifPickMenu from "./GifMenu";
+import Header from "./Header";
 
 const API = "http://api.giphy.com/v1/gifs/search?q=";
 const Key = "&api_key=dc6zaTOxFJmzC&limit=12&offset=";
@@ -20,19 +18,18 @@ let query = "";
 let results = [];
 
 const AppLayout = styled.div`
-    display: grid;
-    min-height: 100vh;
-    grid-template-columns: 150px 1fr 250px;
-    grid-template-rows: 60px 90px auto 100px;
-    grid-column-gap: 5px;
-    grid-row-gap: 5px;
-    grid-template-areas:
-      "headerL headerM headerR "
-        "searchL searchM searchR "
-        "containerL containerM containerR"
-        "footerL footerM footerR ";
-    
-`
+  display: grid;
+  min-height: 100vh;
+  grid-template-columns: 150px 1fr 250px;
+  grid-template-rows: 60px 90px auto 100px;
+  grid-column-gap: 5px;
+  grid-row-gap: 5px;
+  grid-template-areas:
+    "headerL headerM headerR "
+    "searchL searchM searchR "
+    "containerL containerM containerR"
+    "footerL footerM footerR ";
+`;
 
 class App extends Component {
   constructor(props) {
@@ -60,10 +57,6 @@ class App extends Component {
         const { data } = results;
         this.setState({ list: data });
       });
-  }
-
-  toggleButtons(e) {
-    this.setState({ show: !this.state.show });
   }
 
   handleQuery({ currentTarget }) {
@@ -104,12 +97,11 @@ class App extends Component {
     );
   }
 
-
   render() {
     const { list } = this.state;
-    console.log(this.props)
+    console.log(this.props);
 
-  /*   
+    /*   
     const buttons = buttonList.map(button => {
       return (
         <button className="theme" key={button.id} value={button.id} onClick={this.handleQuery}>
@@ -135,11 +127,8 @@ class App extends Component {
       <AppLayout>
         {/* //Header */}
         <Header />
-      
 
         <GifPickMenu />
-
-     
       </AppLayout>
     );
   }
