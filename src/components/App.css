@@ -41,23 +41,6 @@ main {
   }
 }
 
-.title {
-  grid-area: searchM;
-  align-self: center;
-  justify-self: start;
-  font-size: 55px;
-  color: #959e9f;
-}
-.subtitle {
-  grid-area: searchM;
-  -ms-flex-item-align: center;
-  align-self: center;
-  font-size: 16px;
-  padding-top: 69px;
-  text-transform: uppercase;
-  font-weight: 300;
-  opacity: 0.9;
-}
 .menu {
   grid-area: containerR;
   display: flex;

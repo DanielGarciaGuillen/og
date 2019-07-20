@@ -5,7 +5,7 @@
   "dependencies": {
     "lodash": "^4.17.11",
     "prop-types": "^15.6.1",
-    "react": "^16.2.0",
+    "react": "^16.8.6",
     "react-burger-menu": "^2.3.0",
     "react-dom": "^16.2.0",
     "react-infinite-scroll-component": "^3.0.2",

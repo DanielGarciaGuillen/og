@@ -1,4 +1,5 @@
-const buttonTextList = [
+
+const GifThemeList = [
   {
     id: "design",
     buttonText: "Design"
@@ -74,4 +75,4 @@ const buttonTextList = [
   }
 ];
 
-export default buttonTextList;
+export default GifThemeList;

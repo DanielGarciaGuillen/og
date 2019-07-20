@@ -2,7 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 
 
-const HeaderDiv = styled.div`
+const HeaderBarDiv = styled.div`
     grid-column: 2/4;
     height: 100%;
     border-radius: 10px;
@@ -22,15 +22,43 @@ const HeaderDiv = styled.div`
     @-webkit-keyframes Gradient {
       0% {
       background-position: 0% 50%;
-    }
+      }
       50% {
       background-position: 100% 50%;
-    }
+      }
       100% {
       background-position: 0% 50%;
+      }
     }
-  }
-  `
-const Header = () => ( <HeaderDiv/> )
+`
+
+const Title = styled.h1`
+  grid-area: searchM;
+  align-self: center;
+  justify-self: start;
+  font-size: 55px;
+  color: #959e9f;
+`
+
+const Subtitle = styled.h5`
+  grid-area: searchM;
+  -ms-flex-item-align: center;
+  align-self: center;
+  font-size: 16px;
+  padding-top: 69px;
+  text-transform: uppercase;
+  font-weight: 300;
+  opacity: 0.9;
+`
+
+const Header = () => ( 
+  <React.Fragment>
+    <HeaderBarDiv/>
+    <Title>DEsign.!.</Title>
+    <br/>
+
+    <Subtitle>creative gifs</Subtitle>
+  </React.Fragment>
+);
 
 export default Header;

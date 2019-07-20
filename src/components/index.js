@@ -9,7 +9,7 @@ import { CSSTransitionGroup } from "react-transition-group";
 import "./App.css";
 import Sticky from "./totop";
 import GifList from "./gifList";
-import PickGifTheme from './PickGifTheme';
+import GifPickMenu from './GifPickMenu';
 import Header from './Header';
 
 const API = "http://api.giphy.com/v1/gifs/search?q=";
@@ -70,7 +70,6 @@ class App extends Component {
     window.scrollTo(0, 0);
     list.length = 0;
     query = currentTarget.value;
-    console.log(query);
     this.setState(
       {
         query: query,
@@ -105,9 +104,10 @@ class App extends Component {
     );
   }
 
+
   render() {
     const { list } = this.state;
-    console.log(list)
+    console.log(this.props)
 
   /*   
     const buttons = buttonList.map(button => {
@@ -136,12 +136,8 @@ class App extends Component {
         {/* //Header */}
         <Header />
       
-        <h1 className="title">
-          DEsign.!.<br />
-        </h1>
-        <h5 className="subtitle">creative gifs</h5>
 
-        <PickGifTheme />
+        <GifPickMenu />
 
      
       </AppLayout>
