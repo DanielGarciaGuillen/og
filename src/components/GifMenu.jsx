@@ -1,7 +1,5 @@
 import React, { Component } from "react";
-import themeList from "../config/gifThemeList";
 import styled from "styled-components";
-import { isEmpty, sample } from "lodash";
 import gifThemeList from "../config/gifThemeList";
 
 const ThemeMenu = styled.div`
@@ -17,8 +15,8 @@ const ThemeMenu = styled.div`
 `;
 
 const ThemeButton = styled.button`
-  background: none;
-  color: black;
+  background: ${props => (props.primary ? "palevioletred" : "white")};
+  color: ${props => (props.primary ? "white" : "black")}
   text-transform: uppercase;
   border: 1px solid #e4e9ee;
   border-radius: 3px;
@@ -29,12 +27,8 @@ const ThemeButton = styled.button`
   margin: 10px;
   cursor: pointer;
 `;
-/* 
-button.toggle:focus {
-  outline: none !important;
-}
 
-.toggle {
+const ButtonMenu = styled.button`
   background: #d66d75;
   background: -webkit-linear-gradient(to right, #e29587, #d66d75);
   background: linear-gradient(to right, #e29587, #d66d75);
@@ -50,20 +44,20 @@ button.toggle:focus {
   font-family: "Roboto Slab", serif;
   -ms-flex-align: center;
   align-items: center;
-}
+  &:hover {
+    background: #d66d75;
+    background: -webkit-linear-gradient(to right, #4bc0c8, #c779d0);
+    background: linear-gradient(to right, #4bc0c8, #c779d0);
+  }
+`;
 
-.toggle:hover {
-  background: #d66d75;
-  background: -webkit-linear-gradient(to right, #4bc0c8, #c779d0);
-  background: linear-gradient(to right, #4bc0c8, #c779d0);
-}
-
-.toggle:hover > .emojihand {
-  padding-top: 4px;
-  animation: bounce 0.8s infinite alternate;
-  -webkit-animation: bounce 0.8s infinite alternate;
-}
-
+const EmojiHand = styled.div`
+  ${ButtonMenu}:hover & {
+    padding-top: 4px;
+    animation: bounce 0.8s infinite alternate;
+    -webkit-animation: bounce 0.8s infinite alternate;
+  }
+  
 @keyframes bounce {
   from {
     transform: translateY(-3px);
@@ -79,46 +73,32 @@ button.toggle:focus {
   to {
     transform: translateY(0px);
   }
-} */
+`;
 
 class GifMenu extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      showMenu: false
-    };
-  }
-
-  toggleButtons(e) {
-    this.setState({ show: !this.state.show });
-  }
-
   render() {
+    const { showMenu, chooseTheme, toggleMenu, gifTheme } = this.props;
     return (
       <ThemeMenu>
-        <button
-          className="toggle"
-          checked={this.state.show}
-          onClick={this.toggleButtons}
-        >
+        <ButtonMenu onClick={() => toggleMenu()}>
           Pick a Theme<br />
-          <div className="emojihand">
+          <EmojiHand>
             <span role="img" aria-label="HandDown">
               👇
             </span>
-          </div>
-        </button>
-        {isEmpty(gifThemeList)
-          ? null
-          : gifThemeList.map(theme => (
-              <ThemeButton
-                key={theme.id}
-                value={theme.id}
-                onClick={this.pickTheme}
-              >
-                {theme.buttonText}
-              </ThemeButton>
-            ))}
+          </EmojiHand>
+        </ButtonMenu>
+        {showMenu &&
+          gifThemeList.map(theme => (
+            <ThemeButton
+              key={theme.id}
+              value={theme.id}
+              onClick={e => chooseTheme(e)}
+              primary={theme.id === gifTheme}
+            >
+              {theme.buttonText}
+            </ThemeButton>
+          ))}
       </ThemeMenu>
     );
   }

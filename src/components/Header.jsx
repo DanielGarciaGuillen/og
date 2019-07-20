@@ -32,7 +32,7 @@ const HeaderBarDiv = styled.div`
 `;
 
 const Title = styled.h1`
-  s: searchM;
+  grid-area: searchM;
   align-self: center;
   justify-self: start;
   font-size: 55px;
@@ -45,7 +45,6 @@ const Subtitle = styled.h5`
   align-self: center;
   font-size: 16px;
   padding-top: 69px;
-  text-transform: uppercase;
   font-weight: 300;
   opacity: 0.9;
 `;
@@ -55,7 +54,7 @@ const Header = () => (
     <HeaderBarDiv />
     <Title>DEsign.!.</Title>
     <br />
-    <Subtitle>creative gifs</Subtitle>
+    <Subtitle>CREATIVE GIFS</Subtitle>
   </React.Fragment>
 );
 

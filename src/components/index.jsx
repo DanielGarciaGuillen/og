@@ -39,14 +39,39 @@ class App extends Component {
       offset: 0,
       query: "abstract",
       loading: false,
-      show: false
+      showMenu: false
     };
-    this.getGifs = this.getGifs.bind(this);
+    /*  this.getGifs = this.getGifs.bind(this);
     this.moreGifs = this.moreGifs.bind(this);
-    this.toggleButtons = this.toggleButtons.bind(this);
-    this.handleQuery = this.handleQuery.bind(this);
+    */
+    this.chooseTheme = this.chooseTheme.bind(this);
+    this.toggleMenu = this.toggleMenu.bind(this);
   }
 
+  toggleMenu = () => {
+    const { showMenu } = this.state;
+    this.setState({ showMenu: !showMenu });
+  };
+
+  chooseTheme = e => {
+    debugger;
+    window.scrollTo(0, 0);
+    this.setState({ gifTheme: e.target.value });
+    /* list.length = 0;
+    query = currentTarget.value;
+    this.setState(
+      {
+        query: query,
+        list: list,
+        offset: 0,
+        loading: true,
+        show: false
+      },
+      this.getGifs
+    ); */
+  };
+
+  /* 
   componentDidMount() {
     fetch(API + `${this.state.query}` + Key)
       .then(res => res.json())
@@ -58,23 +83,9 @@ class App extends Component {
         this.setState({ list: data });
       });
   }
+ */
 
-  handleQuery({ currentTarget }) {
-    window.scrollTo(0, 0);
-    list.length = 0;
-    query = currentTarget.value;
-    this.setState(
-      {
-        query: query,
-        list: list,
-        offset: 0,
-        loading: true,
-        show: false
-      },
-      this.getGifs
-    );
-  }
-
+  /* 
   //API call
   getGifs() {
     fetch(API + `${this.state.query}` + Key + `${this.state.offset}`)
@@ -95,21 +106,11 @@ class App extends Component {
       { offset: this.state.offset + 12, loading: true },
       this.getGifs
     );
-  }
+  } */
 
   render() {
-    const { list } = this.state;
-    console.log(this.props);
+    const { list, showMenu, gifTheme } = this.state;
 
-    /*   
-    const buttons = buttonList.map(button => {
-      return (
-        <button className="theme" key={button.id} value={button.id} onClick={this.handleQuery}>
-          {button.button}
-        </button>
-      );
-    });
- */
     const listItems = list.map(gif => (
       <li className="gif" key={gif.id}>
         <a className="linkGif" href={gif.url} target="_blank">
@@ -128,7 +129,12 @@ class App extends Component {
         {/* //Header */}
         <Header />
 
-        <GifPickMenu />
+        <GifPickMenu
+          showMenu={showMenu}
+          toggleMenu={this.toggleMenu}
+          chooseTheme={this.chooseTheme}
+          gifTheme={gifTheme}
+        />
       </AppLayout>
     );
   }
