@@ -81,6 +81,10 @@ const Gif = styled.img`
   border-radius: 100px;
 `;
 
+const MadeBy = styled.div`
+  margin-top: 110px;
+`;
+
 class Menu extends Component {
   render() {
     const { showMenu, chooseTheme, toggleMenu, gifTheme } = this.props;
@@ -106,7 +110,7 @@ class Menu extends Component {
                 {theme.buttonText}
               </ThemeButton>
             ))}
-            <div className="me">
+            <MadeBy>
               by <br />
               <a href="https://www.linkedin.com/in/danielgguillen/?locale=en_US">
                 <Gif
@@ -114,7 +118,7 @@ class Menu extends Component {
                   alt="pictureofmyself"
                 />
               </a>
-            </div>
+            </MadeBy>
           </React.Fragment>
         )}
       </ThemeMenu>

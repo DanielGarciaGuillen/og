@@ -1,8 +1,6 @@
 import React, { Component } from "react";
 import styled from "styled-components";
 
-import "./App.css";
-
 const GoTopDiv = styled.div`
   grid-area: containerR;
   font-size: 18px;

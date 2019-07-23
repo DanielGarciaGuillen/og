@@ -1,12 +1,13 @@
 import React, { Component } from "react";
 import styled from "styled-components";
-import { sample, isEmpty } from "lodash";
+import { sample } from "lodash";
 import { Waypoint } from "react-waypoint";
 import ReturnTop from "./ReturnTop";
 import GifList from "./GifList";
 import Menu from "./Menu";
 import Header from "./Header";
 import GifThemeList from "../config/gifThemeList";
+import Loader from "./Loader";
 
 const AppLayout = styled.div`
   display: grid;
@@ -48,12 +49,10 @@ class App extends Component {
     const { gifTheme } = this.state;
     if (prevState.gifTheme !== gifTheme) {
       this.fetchGifs(gifTheme);
-      this.setState({ offset: 0 });
     }
   }
 
   fetchGifs(gifTheme) {
-    this.setState({ loading: true });
     fetch(
       `${process.env.REACT_APP_API_URL}${gifTheme}${
         process.env.REACT_APP_API_KEY
@@ -91,7 +90,7 @@ class App extends Component {
 
   chooseTheme = e => {
     window.scrollTo(0, 0);
-    this.setState({ gifTheme: e.target.value });
+    this.setState({ gifTheme: e.target.value, gifs: [], loading: true });
   };
 
   render() {
@@ -106,8 +105,8 @@ class App extends Component {
           chooseTheme={this.chooseTheme.bind(this)}
           gifTheme={gifTheme}
         />
-        {isEmpty(gifs) ? (
-          "loading"
+        {loading ? (
+          <Loader />
         ) : (
           <React.Fragment>
             <GifList gifs={gifs} />
