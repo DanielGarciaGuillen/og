@@ -30,7 +30,9 @@ const HeaderBarDiv = styled.div`
     }
   }
   @media (max-width: 768px) {
-    grid-column: 1/4;
+    grid-area: headerM;
+    width: 55%;
+    place-self: end;
   }
 `;
 
@@ -44,12 +46,14 @@ const Title = styled.h1`
 
 const Subtitle = styled.h5`
   grid-area: subHeaderM;
-  -ms-flex-item-align: center;
   align-self: center;
   font-size: 16px;
   padding-top: 69px;
   font-weight: 300;
   opacity: 0.9;
+  @media (max-width: 768px) {
+    justify-self: start;
+  }
 `;
 
 const Header = () => (

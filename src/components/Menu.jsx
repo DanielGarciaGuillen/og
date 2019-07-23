@@ -9,16 +9,9 @@ const ThemeMenu = styled.div`
   flex-wrap: nowrap;
   align-items: center;
   padding-top: 12px;
-  button.toggle:focus {
-    outline: none !important;
-  }
   @media (max-width: 768px) {
     grid-area: buttonM;
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
-    flex-wrap: wrap;
-    padding-top: 0;
+    width: 200px;
   }
 `;
 

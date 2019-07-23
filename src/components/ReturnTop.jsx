@@ -15,8 +15,8 @@ const GoTopDiv = styled.div`
   :hover {
     opacity: 1;
   }
-  @media (max-width: 500px) {
-    grid-area: buttonM;
+  @media (max-width: 800px) {
+    grid-area: containerM;
   }
 `;
 

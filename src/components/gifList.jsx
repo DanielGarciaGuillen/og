@@ -33,6 +33,9 @@ const GifListContainer = styled.div`
   grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
   grid-gap: 1rem;
   justify-items: center;
+  @media (max-width: 768px) {
+    grid-template-columns: repeat(auto-fill, minmax(200px, 250px));
+  }
 `;
 
 const GifItem = styled.li`
@@ -58,6 +61,12 @@ const GifImage = styled.img`
   min-height: 240px;
   min-width: 240px;
   border-radius: 3px;
+  @media (max-width: 768px) {
+    max-height: 290px;
+    max-width: 290px;
+    min-height: 120px;
+    min-width: 120px;
+  }
 `;
 
 class GifList extends React.Component {

@@ -37,6 +37,7 @@ const AppLayout = styled.div`
     background-color: #fff;
     font-family: "Catamaran", sans-serif;
     max-width: 100vw;
+    place-items: center;
   }
 `;
 const WayPointDiv = styled.div`
@@ -106,7 +107,12 @@ class App extends Component {
 
   chooseTheme = e => {
     window.scrollTo(0, 0);
-    this.setState({ gifTheme: e.target.value, gifs: [], loading: true });
+    this.setState({
+      gifTheme: e.target.value,
+      gifs: [],
+      loading: true,
+      showMenu: false
+    });
   };
 
   render() {
