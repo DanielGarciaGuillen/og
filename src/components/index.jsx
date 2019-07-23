@@ -16,12 +16,28 @@ const AppLayout = styled.div`
   grid-template-rows: 60px 90px minmax(800px, auto) 50px 100px;
   grid-column-gap: 5px;
   grid-row-gap: 5px;
+  font-family: "Catamaran", sans-serif;
   grid-template-areas:
     "headerL headerM headerR"
-    "searchL searchM searchR"
+    "subHeaderL subHeaderM subHeaderR"
     "containerL containerM containerR"
     "waypointL waypointM waypointR"
     "footerL footerM footerR";
+  @media (max-width: 768px) {
+    grid-template-columns: 1fr;
+    grid-template-rows: 60px 90px auto auto 100px;
+    grid-column-gap: 5px;
+    grid-row-gap: 5px;
+    grid-template-areas:
+      "headerM"
+      "subHeaderM"
+      "buttonM"
+      "containerM"
+      "footerM";
+    background-color: #fff;
+    font-family: "Catamaran", sans-serif;
+    max-width: 100vw;
+  }
 `;
 const WayPointDiv = styled.div`
   grid-area: waypointM;

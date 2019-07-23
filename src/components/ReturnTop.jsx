@@ -42,7 +42,6 @@ class Sticky extends Component {
     window.removeEventListener("scroll", this.handleScroll);
   }
   toTop() {
-    debugger;
     window.scrollTo(0, 0);
   }
 
@@ -69,7 +68,7 @@ class Sticky extends Component {
             cursor: "pointer"
           }}
         >
-          <a onClick={() => this.toTop()}>
+          <a href="gobacktop" onClick={() => this.toTop()}>
             <Goback src={require("../images/cat.gif")} />
           </a>
         </div>

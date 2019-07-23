@@ -12,6 +12,14 @@ const ThemeMenu = styled.div`
   button.toggle:focus {
     outline: none !important;
   }
+  @media (max-width: 768px) {
+    grid-area: buttonM;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    flex-wrap: wrap;
+    padding-top: 0;
+  }
 `;
 
 const ThemeButton = styled.button`

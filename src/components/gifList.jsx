@@ -67,7 +67,7 @@ class GifList extends React.Component {
       <GifListContainer>
         {gifs.map(gif => (
           <GifItem key={gif.id}>
-            <a href={gif.url} target="_blank">
+            <a href={gif.url} target="_blank" rel="noopener noreferrer">
               <GifImage alt={gif.title} src={gif.images.original.url} />
             </a>
           </GifItem>

@@ -29,10 +29,13 @@ const HeaderBarDiv = styled.div`
       background-position: 0% 50%;
     }
   }
+  @media (max-width: 768px) {
+    grid-column: 1/4;
+  }
 `;
 
 const Title = styled.h1`
-  grid-area: searchM;
+  grid-area: subHeaderM;
   align-self: center;
   justify-self: start;
   font-size: 55px;
@@ -40,7 +43,7 @@ const Title = styled.h1`
 `;
 
 const Subtitle = styled.h5`
-  grid-area: searchM;
+  grid-area: subHeaderM;
   -ms-flex-item-align: center;
   align-self: center;
   font-size: 16px;
