@@ -1,51 +1,87 @@
 import React, { Component } from "react";
 import styled from "styled-components";
-
-import Waypoint from "react-waypoint";
-import { BeatLoader } from "react-spinners";
-import { CSSTransitionGroup } from "react-transition-group";
-import "./App.css";
-import Sticky from "./totop";
-import GifList from "./gifList";
-import GifPickMenu from "./GifMenu";
+import { sample, isEmpty } from "lodash";
+import { Waypoint } from "react-waypoint";
+import ReturnTop from "./ReturnTop";
+import GifList from "./GifList";
+import Menu from "./Menu";
 import Header from "./Header";
-
-const API = "http://api.giphy.com/v1/gifs/search?q=";
-const Key = "&api_key=dc6zaTOxFJmzC&limit=12&offset=";
-
-var list = [];
-let query = "";
-let results = [];
+import GifThemeList from "../config/gifThemeList";
 
 const AppLayout = styled.div`
   display: grid;
   min-height: 100vh;
   grid-template-columns: 150px 1fr 250px;
-  grid-template-rows: 60px 90px auto 100px;
+  grid-template-rows: 60px 90px minmax(800px, auto) 50px 100px;
   grid-column-gap: 5px;
   grid-row-gap: 5px;
   grid-template-areas:
-    "headerL headerM headerR "
-    "searchL searchM searchR "
+    "headerL headerM headerR"
+    "searchL searchM searchR"
     "containerL containerM containerR"
-    "footerL footerM footerR ";
+    "waypointL waypointM waypointR"
+    "footerL footerM footerR";
+`;
+const WayPointDiv = styled.div`
+  grid-area: waypointM;
+  align-self: end;
 `;
 
 class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      list: [],
+      gifs: [],
       offset: 0,
-      query: "abstract",
+      gifTheme: sample(GifThemeList).id,
       loading: false,
       showMenu: false
     };
-    /*  this.getGifs = this.getGifs.bind(this);
-    this.moreGifs = this.moreGifs.bind(this);
-    */
-    this.chooseTheme = this.chooseTheme.bind(this);
-    this.toggleMenu = this.toggleMenu.bind(this);
+  }
+
+  componentDidMount() {
+    const { gifTheme } = this.state;
+    this.fetchGifs(gifTheme);
+  }
+
+  componentDidUpdate(prevProps, prevState) {
+    const { gifTheme } = this.state;
+    if (prevState.gifTheme !== gifTheme) {
+      this.fetchGifs(gifTheme);
+      this.setState({ offset: 0 });
+    }
+  }
+
+  fetchGifs(gifTheme) {
+    this.setState({ loading: true });
+    fetch(
+      `${process.env.REACT_APP_API_URL}${gifTheme}${
+        process.env.REACT_APP_API_KEY
+      }`
+    )
+      .then(response => response.json())
+      .then(({ data: gifs, pagination: { offset } }) =>
+        this.setState({ gifs, loading: false, offset })
+      );
+  }
+
+  addGifs(gifTheme, offset) {
+    const updatedOffset = offset + 12;
+    fetch(
+      `${process.env.REACT_APP_API_URL}${gifTheme}${
+        process.env.REACT_APP_API_KEY
+      }${updatedOffset}`
+    )
+      .then(response => response.json())
+      .then(({ data, pagination: { offset } }) => {
+        const { gifs } = this.state;
+        const updatedGifs = gifs.concat(...data);
+        this.setState({
+          gifs: updatedGifs,
+          loading: false,
+          offset
+        });
+      });
   }
 
   toggleMenu = () => {
@@ -54,87 +90,40 @@ class App extends Component {
   };
 
   chooseTheme = e => {
-    debugger;
     window.scrollTo(0, 0);
     this.setState({ gifTheme: e.target.value });
-    /* list.length = 0;
-    query = currentTarget.value;
-    this.setState(
-      {
-        query: query,
-        list: list,
-        offset: 0,
-        loading: true,
-        show: false
-      },
-      this.getGifs
-    ); */
   };
 
-  /* 
-  componentDidMount() {
-    fetch(API + `${this.state.query}` + Key)
-      .then(res => res.json())
-      .then(function(MyJson) {
-        results = MyJson;
-      })
-      .then(() => {
-        const { data } = results;
-        this.setState({ list: data });
-      });
-  }
- */
-
-  /* 
-  //API call
-  getGifs() {
-    fetch(API + `${this.state.query}` + Key + `${this.state.offset}`)
-      .then(res => res.json())
-      .then(function(MyJson) {
-        results = MyJson;
-      })
-      .then(() => {
-        const { data } = results;
-        list.push(...data);
-        this.setState({ list, loading: false });
-      });
-  }
-
-  moreGifs() {
-    results.length = 0;
-    this.setState(
-      { offset: this.state.offset + 12, loading: true },
-      this.getGifs
-    );
-  } */
-
   render() {
-    const { list, showMenu, gifTheme } = this.state;
-
-    const listItems = list.map(gif => (
-      <li className="gif" key={gif.id}>
-        <a className="linkGif" href={gif.url} target="_blank">
-          <img
-            className="gifImage"
-            alt={gif.title}
-            src={gif.images.fixed_width.url}
-          />
-        </a>
-      </li>
-    ));
+    const { gifs, showMenu, gifTheme, loading, offset } = this.state;
 
     return (
-      //GRID
       <AppLayout>
-        {/* //Header */}
         <Header />
-
-        <GifPickMenu
+        <Menu
           showMenu={showMenu}
-          toggleMenu={this.toggleMenu}
-          chooseTheme={this.chooseTheme}
+          toggleMenu={this.toggleMenu.bind(this)}
+          chooseTheme={this.chooseTheme.bind(this)}
           gifTheme={gifTheme}
         />
+        {isEmpty(gifs) ? (
+          "loading"
+        ) : (
+          <React.Fragment>
+            <GifList gifs={gifs} />
+            <WayPointDiv>
+              <Waypoint
+                onEnter={({ currentPosition }) => {
+                  if (currentPosition === "inside") {
+                    this.addGifs(gifTheme, offset);
+                  }
+                }}
+              />
+            </WayPointDiv>
+          </React.Fragment>
+        )}
+
+        <ReturnTop />
       </AppLayout>
     );
   }

@@ -17,12 +17,13 @@ const ThemeMenu = styled.div`
 const ThemeButton = styled.button`
   background: ${props => (props.primary ? "palevioletred" : "white")};
   color: ${props => (props.primary ? "white" : "black")}
+  font-weight:${props => (props.primary ? 800 : 600)};
   text-transform: uppercase;
   border: 1px solid #e4e9ee;
   border-radius: 3px;
-  height: 30px;
+  height: 40px;
   opacity: 0.8;
-  width: 60%;
+  width: 50%;
   padding: 3px;
   margin: 10px;
   cursor: pointer;
@@ -75,7 +76,12 @@ const EmojiHand = styled.div`
   }
 `;
 
-class GifMenu extends Component {
+const Gif = styled.img`
+  height: 90px;
+  border-radius: 100px;
+`;
+
+class Menu extends Component {
   render() {
     const { showMenu, chooseTheme, toggleMenu, gifTheme } = this.props;
     return (
@@ -88,20 +94,32 @@ class GifMenu extends Component {
             </span>
           </EmojiHand>
         </ButtonMenu>
-        {showMenu &&
-          gifThemeList.map(theme => (
-            <ThemeButton
-              key={theme.id}
-              value={theme.id}
-              onClick={e => chooseTheme(e)}
-              primary={theme.id === gifTheme}
-            >
-              {theme.buttonText}
-            </ThemeButton>
-          ))}
+        {showMenu && (
+          <React.Fragment>
+            {gifThemeList.map(theme => (
+              <ThemeButton
+                key={theme.id}
+                value={theme.id}
+                onClick={e => chooseTheme(e)}
+                primary={theme.id === gifTheme}
+              >
+                {theme.buttonText}
+              </ThemeButton>
+            ))}
+            <div className="me">
+              by <br />
+              <a href="https://www.linkedin.com/in/danielgguillen/?locale=en_US">
+                <Gif
+                  src={require("../images/mygif.gif")}
+                  alt="pictureofmyself"
+                />
+              </a>
+            </div>
+          </React.Fragment>
+        )}
       </ThemeMenu>
     );
   }
 }
 
-export default GifMenu;
+export default Menu;

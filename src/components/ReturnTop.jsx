@@ -3,7 +3,7 @@ import styled from "styled-components";
 
 import "./App.css";
 
-const Contribute = styled.div`
+const GoTopDiv = styled.div`
   grid-area: containerR;
   font-size: 18px;
   width: 15%;
@@ -33,7 +33,6 @@ class Sticky extends Component {
     this.state = {
       scrollingLock: false
     };
-    // example how to bind object in React ES6
     this.handleScroll = this.handleScroll.bind(this);
   }
 
@@ -45,23 +44,21 @@ class Sticky extends Component {
     window.removeEventListener("scroll", this.handleScroll);
   }
   toTop() {
+    debugger;
     window.scrollTo(0, 0);
   }
+
   handleScroll() {
     if (window.scrollY > 2000) {
-      this.setState({
-        scrollingLock: true
-      });
+      this.setState({ scrollingLock: true });
     } else if (window.scrollY < 1400 || window.scrollY > 1999) {
-      this.setState({
-        scrollingLock: false
-      });
+      this.setState({ scrollingLock: false });
     }
   }
 
   render() {
     return (
-      <Contribute>
+      <GoTopDiv>
         <div
           style={{
             gridArea: "containerR",
@@ -74,11 +71,11 @@ class Sticky extends Component {
             cursor: "pointer"
           }}
         >
-          <a onClick={this.toTop.bind(this)}>
+          <a onClick={() => this.toTop()}>
             <Goback src={require("../images/cat.gif")} />
-          </a>{" "}
+          </a>
         </div>
-      </Contribute>
+      </GoTopDiv>
     );
   }
 }

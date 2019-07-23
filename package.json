@@ -9,13 +9,14 @@
     "react-burger-menu": "^2.3.0",
     "react-dom": "^16.2.0",
     "react-infinite-scroll-component": "^3.0.2",
+    "react-infinite-scroller": "^1.2.4",
     "react-responsive": "^4.0.5",
     "react-scripts": "1.1.1",
     "react-scroll-up": "^1.3.3",
     "react-spinners": "^0.2.6",
     "react-toggle": "^4.0.2",
     "react-transition-group": "^2.4.0",
-    "react-waypoint": "^8.0.1",
+    "react-waypoint": "^9.0.2",
     "styled-components": "^3.2.3"
   },
   "scripts": {
@@ -25,6 +26,7 @@
     "eject": "react-scripts eject"
   },
   "devDependencies": {
+    "dotenv": "^8.0.0",
     "eslint": "^5.16.0",
     "eslint-config-airbnb": "^17.1.1",
     "eslint-plugin-import": "^2.18.2",

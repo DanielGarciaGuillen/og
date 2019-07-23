@@ -31,7 +31,6 @@ main {
       "footerL footerM footerR ";
   }
 
-
   .main {
     grid-area: containerM;
     display: grid;
@@ -49,7 +48,6 @@ main {
   align-items: center;
   padding-top: 12px;
 }
-
 
 .buttons {
   display: flex;
@@ -93,32 +91,6 @@ main {
   margin-top: 20px;
 }
 
-.gif {
-  display: flex;
-  flex-flow: column;
-  border-radius: 3rem;
-  padding-top: 2rem;
-  justify-content: center;
-  align-self: center;
-  justify-self: center;
-  transition: all 200ms ease-in;
-  transform: scale(1);
-}
-.gif:hover {
-  z-index: 2;
-  transition: all 200ms ease-in;
-  transform: scale(1.13);
-}
-
-.linkGif > img {
-  order: -1;
-  align-self: center;
-  max-height: 250px;
-  max-width: 250px;
-  min-height: 120px;
-  min-width: 120px;
-  border-radius: 3px;
-}
 .spinner {
   grid-area: containerL;
 }
