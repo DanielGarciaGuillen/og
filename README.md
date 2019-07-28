@@ -10,12 +10,12 @@ Choose your theme, browse the gifs and get some inspiration.
 
 ## [DEsign.!.](http://dedd.co)
 
-![DEsign.!.](/src/images/test.png?raw=true "Dedd")
+![DEsign.!.](/src/images/dedd.png?raw=true "Dedd")
 
 ## Built With
 
-* React
-* AWS
-* Javascript
-* Css
-* Html
+- React
+- AWS
+- Javascript
+- Css
+- Html
