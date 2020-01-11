@@ -59,6 +59,7 @@ class App extends Component {
 
   componentDidMount() {
     const { gifTheme } = this.state;
+    debugger;
     this.fetchGifs(gifTheme);
   }
 
@@ -70,10 +71,9 @@ class App extends Component {
   }
 
   fetchGifs(gifTheme) {
+    debugger;
     fetch(
-      `${process.env.REACT_APP_API_URL}${gifTheme}${
-        process.env.REACT_APP_API_KEY
-      }`
+      `https://api.giphy.com/v1/gifs/search?q=${gifTheme}&api_key=${process.env.REACT_APP_API_KEY}`
     )
       .then(response => response.json())
       .then(({ data: gifs, pagination: { offset } }) =>
@@ -84,9 +84,7 @@ class App extends Component {
   addGifs(gifTheme, offset) {
     const updatedOffset = offset + 12;
     fetch(
-      `${process.env.REACT_APP_API_URL}${gifTheme}${
-        process.env.REACT_APP_API_KEY
-      }${updatedOffset}`
+      `https://api.giphy.com/v1/gifs/search?q=${gifTheme}&api_key=${process.env.REACT_APP_API_KEY}${updatedOffset}`
     )
       .then(response => response.json())
       .then(({ data, pagination: { offset } }) => {
