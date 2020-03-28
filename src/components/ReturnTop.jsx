@@ -68,7 +68,7 @@ class Sticky extends Component {
             cursor: "pointer"
           }}
         >
-          <a href="gobacktop" onClick={() => this.toTop()}>
+          <a onClick={() => this.toTop()}>
             <Goback src={require("../images/cat.gif")} />
           </a>
         </div>

@@ -59,7 +59,6 @@ class App extends Component {
 
   componentDidMount() {
     const { gifTheme } = this.state;
-    debugger;
     this.fetchGifs(gifTheme);
   }
 
@@ -71,7 +70,6 @@ class App extends Component {
   }
 
   fetchGifs(gifTheme) {
-    debugger;
     fetch(
       `https://api.giphy.com/v1/gifs/search?q=${gifTheme}&api_key=${process.env.REACT_APP_API_KEY}`
     )
@@ -79,23 +77,6 @@ class App extends Component {
       .then(({ data: gifs, pagination: { offset } }) =>
         this.setState({ gifs, loading: false, offset })
       );
-  }
-
-  addGifs(gifTheme, offset) {
-    const updatedOffset = offset + 12;
-    fetch(
-      `https://api.giphy.com/v1/gifs/search?q=${gifTheme}&api_key=${process.env.REACT_APP_API_KEY}${updatedOffset}`
-    )
-      .then(response => response.json())
-      .then(({ data, pagination: { offset } }) => {
-        const { gifs } = this.state;
-        const updatedGifs = gifs.concat(...data);
-        this.setState({
-          gifs: updatedGifs,
-          loading: false,
-          offset
-        });
-      });
   }
 
   toggleMenu = () => {
@@ -114,7 +95,7 @@ class App extends Component {
   };
 
   render() {
-    const { gifs, showMenu, gifTheme, loading, offset } = this.state;
+    const { gifs, showMenu, gifTheme, loading } = this.state;
 
     return (
       <AppLayout>
@@ -130,15 +111,6 @@ class App extends Component {
         ) : (
           <React.Fragment>
             <GifList gifs={gifs} />
-            <WayPointDiv>
-              <Waypoint
-                onEnter={({ currentPosition }) => {
-                  if (currentPosition === "inside") {
-                    this.addGifs(gifTheme, offset);
-                  }
-                }}
-              />
-            </WayPointDiv>
           </React.Fragment>
         )}
 
